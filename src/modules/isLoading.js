@@ -1,4 +1,4 @@
-const IS_LOADING = 'redux-3/isLoading/IS_LOADING';
+const IS_LOADING = 'isLoading/IS_LOADING';
 
 export default function reducer(state = false, action){
     switch(action.type){

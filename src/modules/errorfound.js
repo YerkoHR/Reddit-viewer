@@ -1,8 +1,8 @@
-const ITEMS_ERROR = 'ITEMS_ERROR';
+const FETCH_ERROR = 'errorFound/FETCH_ERROR';
 
 export default function reducer(state = false, action){
     switch(action.type){
-        case ITEMS_ERROR:
+        case FETCH_ERROR:
             return  action.error;
         default:
             return state;
@@ -10,5 +10,5 @@ export default function reducer(state = false, action){
 }
             
 export function errorFound(bool){
-    return { type: ITEMS_ERROR,error: bool };
+    return { type: FETCH_ERROR, error: bool };
 }
