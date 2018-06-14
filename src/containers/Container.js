@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
-import { fetchData } from '../modules/posts';
-import { saveUnsave, unsavePost, unSave, showSaved } from '../modules/savePost';
-import { subChange, filterChange } from '../modules/dinamiqURL';
+import { fetchData } from '../redux/ducks/posts';
+import { saveUnsave, unSave, showSaved } from '../redux/ducks/savePost';
+import { subChange, filterChange } from '../redux/ducks/dinamiqURL';
 import ItemList from '../components/ItemList';
 
-function mapStateToProps = (state) => {
+function mapStateToProps  (state)  {
     return {
         posts: state.posts,
         errorFound: state.errorFound,
         loading: state.isLoading,
         saved: state.savePost,
         subs: state.subs,
-        filters: state.dinamiqURL,
-    }
+        filters: state.dinamiqURL
+    };
 }
 
-function mapDispatchProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         toggleState: (id) => dispatch(saveUnsave(id)),
         fetchData: () => dispatch(fetchData()),
@@ -23,6 +23,6 @@ function mapDispatchProps = (dispatch) => {
         filterChange: (filter) => dispatch(filterChange(filter)),
         unSave: (id) => dispatch(unSave(id)),
         show: (bool) => dispatch(showSaved(bool))
-    }
+    };
 }
-export default connect(mapStateToProps, mapDispatchProps)(ItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemList);

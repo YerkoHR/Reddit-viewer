@@ -3,7 +3,6 @@ import { toggleSave } from './posts';
 
 const SAVE = 'savePost/SAVE';
 const UNSAVE = 'savePost/UNSAVE';
-const TOGGLE_SAVE = 'savePost/TOGGLE_SAVE';
 const SHOW_SAVED = 'savePost/SHOW_SAVED';
 
 const initialState = {
@@ -26,7 +25,7 @@ export default function reducer(state =  initialState, action){
 export function savePost(post){
     return { type: SAVE, post };
 }
-export function unsavePost(index){
+export function unSavePost(index){
     return { type: UNSAVE, index };
 }
 export function showSaved(bool){
@@ -34,13 +33,11 @@ export function showSaved(bool){
 }
 export function unSave(id){
     return (dispatch, getState) => {
-    const  unoState = getState();
-    const toRemove = unoState.savePost.saved.findIndex((post) => 
-    post.data.id === id);
-    dispatch(unsavePost(toRemove));
-}
-    
-
+        const  state = getState();
+        const toRemove = state.savePost.saved.findIndex((post) => 
+        post.data.id === id);
+        dispatch(unSavePost(toRemove));
+    }
 }
 export function saveUnsave(id) {
     return (dispatch, getState) => {
@@ -60,7 +57,7 @@ export function saveUnsave(id) {
             const toRemove = thirdState.savePost.saved.findIndex((post) => 
             post.data.id === id);
 
-            dispatch(unsavePost(toRemove));
+            dispatch(unSavePost(toRemove));
         }else{
             console.log('error')
         }
