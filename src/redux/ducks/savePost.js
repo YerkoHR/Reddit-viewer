@@ -46,15 +46,15 @@ export function saveUnsave(id) {
             post.data.id === id);
         dispatch(toggleSave(index));
         
-        const secondState = getState();
-        const toSave = secondState.posts.find((post) => {
+        const postToggleState = getState();
+        const toSave = postToggleState.posts.find((post) => {
             return post.data.id === id
         });
-        const thirdState = getState();
+        //const firstState = getState();
         if (toSave.data.saved){
             dispatch(savePost(toSave));
         }else if(!toSave.data.saved){
-            const toRemove = thirdState.savePost.saved.findIndex((post) => 
+            const toRemove = postToggleState.savePost.saved.findIndex((post) => 
             post.data.id === id);
 
             dispatch(unSavePost(toRemove));
