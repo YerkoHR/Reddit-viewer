@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchData } from '../redux/ducks/posts';
 import { unSave } from '../redux/ducks/savePost';
-import { subChange, filterChange } from '../redux/ducks/dinamiqURL';
+import { subChange, filterChange, resetPage } from '../redux/ducks/dinamiqURL';
 import savedPosts from '../components/savedPosts';
 
 function mapStateToProps  (state)  {
@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
         subChange: (sub) => dispatch(subChange(sub)),
         filterChange: (filter) => dispatch(filterChange(filter)),
         unSave: (id) => dispatch(unSave(id)),
+        resetPage: () => dispatch(resetPage())
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(savedPosts);

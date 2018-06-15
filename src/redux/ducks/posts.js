@@ -2,7 +2,7 @@ import update from 'immutability-helper';
 import axios from 'axios';
 import { errorFound } from './errorfound';
 import { Loading } from './isLoading';
-import { dinamiqURLCreator } from './dinamiqURL';
+import { dinamiqURLCreator, setAfter, setBefore } from './dinamiqURL';
 import { showSaved } from './savePost';
 
 const TOGGLE_SAVE = 'posts/TOGGLE_SAVE';
@@ -45,7 +45,8 @@ export function fetchData(){
         let url = getState();
         axios.get(url.dinamiqURL.urlParts.final)
         .then((response) => {
-            
+            dispatch(setAfter(response.data.data.after));
+            dispatch(setBefore(response.data.data.before));
             const items = response.data.data.children.map((item) => {
                 return item;
             });

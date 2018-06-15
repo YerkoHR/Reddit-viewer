@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchData } from '../redux/ducks/posts';
 import { saveUnsave } from '../redux/ducks/savePost';
-import { subChange, filterChange } from '../redux/ducks/dinamiqURL';
+import { subChange, filterChange, fetchPagination, resetPage } from '../redux/ducks/dinamiqURL';
 import Home from '../components/home';
 
 function mapStateToProps  (state)  {
@@ -19,7 +19,9 @@ const mapDispatchToProps = (dispatch) => {
         toggleState: (id) => dispatch(saveUnsave(id)),
         fetchData: () => dispatch(fetchData()),
         subChange: (sub) => dispatch(subChange(sub)),
-        filterChange: (filter) => dispatch(filterChange(filter))
+        filterChange: (filter) => dispatch(filterChange(filter)),
+        fetchPagination: (direction) => dispatch(fetchPagination(direction)),
+        resetPage: () => dispatch(resetPage())
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

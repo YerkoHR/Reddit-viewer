@@ -5,6 +5,11 @@ const FILTER_CHANGE = 'dinamiqURL/FILTER_CHANGE';
 const TOP_CHANGE = 'dinamiqURL/TOP_CHANGE';
 const FINAL_URL = 'dinamiqURL/FINAL_URL';
 const RESET_URL = 'dinamiqURL/RESET_URL';
+const PAGE_CHANGE = 'dianmiqURL/PAGE_CHANGE';
+const RESET_PAGE = 'dinamiqURL/RESET_PAGE';
+const SET_AFTER = 'dinamiqURL/SET_AFTER';
+const SET_BEFORE = 'dinamiqURL/SET_BEFORE';
+const PAGE_DIRECTION = 'dinamiqURL/PAGE_DIRECTION';
 
 const initialState = {
     urlParts: {
@@ -14,8 +19,8 @@ const initialState = {
         currentFilter: 'hot',
         limit: '.json?limit=25&t=',
         currentTop: 'day',
-        //countPag: '&count=25',
-        //pagCode: 'left or right'
+        countPag: '&count=25',
+        pagCode: '',
         final: ''
     },
     normal: [ 'hot', 'new', 'rising', 'controversial'],
@@ -26,7 +31,13 @@ const initialState = {
         { text: 'Past month', code:'month'}, 
         { text: 'Past year', code:'year'}, 
         { text: 'Past year', code:'all'} 
-    ]
+    ],
+    pagination: {
+        page: 1,
+        totalPages: 20,
+        after: '',
+        before: ''
+    }
 }
 
 export default function reducer(state = initialState, action){
@@ -43,6 +54,14 @@ export default function reducer(state = initialState, action){
             return update(state, {urlParts: {
                 currentTop: { $set: action.newTop }
             }});
+        case PAGE_DIRECTION:
+            return update(state, {urlParts:{pagCode:{$set: action.pageCode}}});
+        case PAGE_CHANGE:
+            return update(state, {pagination:{page:{$set: action.newPage}}});
+        case SET_AFTER:
+            return update(state, {pagination:{after:{$set: action.after}}});
+        case SET_BEFORE:
+            return update(state, {pagination:{before:{$set: action.before}}});
         case RESET_URL:
             return update(state, {urlParts: {
                 final: { $set: '' }
@@ -51,6 +70,11 @@ export default function reducer(state = initialState, action){
             return update(state, {urlParts: {
                 final: { $set: action.final }
             }});
+        case RESET_PAGE:
+            return (update(state, {
+                pagination:{page: {$set: 1}},
+                urlParts:{pagCode:{$set: ''}}
+            }))
         default:
             return state;
     }
@@ -65,11 +89,40 @@ export function filterChange(newFilter){
 export function topChange(newTop){
     return { type: TOP_CHANGE, newTop };
 }
+export function pageChange(newPage){
+    return { type: PAGE_CHANGE, newPage };
+}
 export function finalUrl(final){
     return { type: FINAL_URL, final };
 }
 export function resetURL(){
     return { type: RESET_URL };
+}
+export function resetPage(){
+    return { type: RESET_PAGE };
+}
+export function setAfter(after){
+    return { type: SET_AFTER, after };
+}
+export function setBefore(before){
+    return { type: SET_BEFORE, before };
+}
+export function pageCode(pageCode){
+    return { type: PAGE_DIRECTION, pageCode };
+}
+
+export function fetchPagination(direction){
+    return (dispatch, getState) => {
+
+        const state = getState();
+        let nextPage = state.dinamiqURL.pagination.page;
+        nextPage = direction === 'next' ? nextPage + 1 : nextPage - 1;
+
+        let  urlPage = direction === 'next'? '&after=' + state.dinamiqURL.pagination.after : '&before=' + state.dinamiqURL.pagination.before;
+
+        dispatch(pageChange(nextPage));
+        dispatch(pageCode(urlPage));
+    }
 }
 
 export function dinamiqURLCreator(){

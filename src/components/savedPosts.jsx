@@ -9,6 +9,9 @@ class savedPosts extends Component {
     filterChange = (sub) => {
         this.props.filterChange(sub)
     };
+    resetPage = () => {
+        this.props.resetPage()
+    };
     fetchData = () => {
         this.props.fetchData()
     };
@@ -23,6 +26,7 @@ class savedPosts extends Component {
                         filterChange={this.filterChange}
                         subChange={this.subChange}
                         subs={this.props.subs}
+                        resetPage={this.resetPage}
                         fetchData={this.fetchData}
                     />
                 </Link>
