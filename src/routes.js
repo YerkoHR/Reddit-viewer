@@ -1,14 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
-import ItemList from './components/ItemList';
-import Container from './containers/Container';
-import about from './containers/about';
+import { Route, Switch } from 'react-router-dom';
+import containerHome from './containers/containerHome';
+import containerSaved from './containers/containerSaved';
+
+// Instead of passing the component to Route in redux you need 
+// to pass the container of the component since this needs to recive
+// the store from the Provider to work without errors.
 
 export default () => {
   return (
     <Switch>
-      <Route exact path='/' component={Container}/>
-      <Route path='/about' component={about}/>
+      <Route exact path='/' component={containerHome}/>
+      <Route path='/saved' component={containerSaved}/>
     </Switch>
  )
 }

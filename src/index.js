@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Container from './containers/Container';
 import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import { BrowserRouter } from 'react-router-dom'
@@ -12,10 +11,8 @@ class App extends React.Component {
         return (
             <Provider store={store}>
                 <BrowserRouter>
-                    <Routes />
-                    
+                    <Routes /> 
                 </BrowserRouter>
-               
             </Provider>
         )
     }
