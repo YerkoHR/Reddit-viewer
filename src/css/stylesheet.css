@@ -1,0 +1,8 @@
+/* inject:scss */
+.test {
+  background: yellow; }
+
+body {
+  font: 90% Helvetica, sans-serif; }
+
+/* endinject */

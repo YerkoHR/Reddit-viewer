@@ -55,13 +55,17 @@ export default function reducer(state = initialState, action){
                 currentTop: { $set: action.newTop }
             }});
         case PAGE_DIRECTION:
-            return update(state, {urlParts:{pagCode:{$set: action.pageCode}}});
+            return update(state, {urlParts:
+                {pagCode:{ $set: action.pageCode}}});
         case PAGE_CHANGE:
-            return update(state, {pagination:{page:{$set: action.newPage}}});
+            return update(state, {pagination:
+                {page:{ $set: action.newPage}}});
         case SET_AFTER:
-            return update(state, {pagination:{after:{$set: action.after}}});
+            return update(state, {pagination:
+                {after:{ $set: action.after}}});
         case SET_BEFORE:
-            return update(state, {pagination:{before:{$set: action.before}}});
+            return update(state, {pagination:
+                {before:{ $set: action.before}}});
         case RESET_URL:
             return update(state, {urlParts: {
                 final: { $set: '' }
