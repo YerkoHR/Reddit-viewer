@@ -39,7 +39,7 @@ class Home extends Component {
             return <h1>Loading...</h1>
         }
         return (
-            <div className="test">
+            <div>
                 <Link to="/saved">
                     <button > Saved Posts </button>
                 </Link>

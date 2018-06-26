@@ -1,0 +1,9 @@
+$font-stack: 'Montserrat', Helvetica, sans-serif;
+$background: #ffff;
+body {
+  font: $font-stack;
+  background: $background;
+}
+li{
+  list-style: none;
+}
