@@ -1,0 +1,50 @@
+body {
+  font: "Montserrat", Helvetica, sans-serif;
+  background: #ffff; }
+
+li {
+  list-style: none; }
+
+.list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  border: 1px solid black; }
+  .list-container .active {
+    background: aqua; }
+
+.post-list {
+  margin: 20px 10px;
+  list-style: none;
+  padding: 0;
+  -webkit-box-shadow: 0px 2px 5px 0px #A89FAD;
+  box-shadow: 0px 2px 5px 0px #A89FAD; }
+
+.post {
+  padding: 20px 10px;
+  border-bottom: .5px solid lightgrey;
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: 1fr;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: justify; }
+  .post .title-container {
+    margin: 5px 20px; }
+  .post .post-title {
+    color: black;
+    text-decoration: none; }
+    .post .post-title:hover {
+      opacity: 0.8;
+      -webkit-transition: 0.5s ease;
+      -o-transition: 0.5s ease;
+      transition: 0.5s ease; }
+    .post .post-title:visited {
+      color: #0D1F2D; }
+  .post .save-btn {
+    border-radius: 10px; }

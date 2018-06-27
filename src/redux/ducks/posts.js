@@ -55,6 +55,7 @@ export function fetchData(){
             if(savedstate.savePost.saved.length>0){
                 const uno = getState();
                 let aux = uno;
+                
                 items.forEach((x)=>{
                     aux.savePost.saved.forEach((y)=>{
                         if (x.data.id === y.data.id){

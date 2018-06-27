@@ -47,6 +47,7 @@ class Home extends Component {
                     subChange={this.subChange}
                     filterChange={this.filterChange}
                     subs={this.props.subs}
+                    active={this.props.filters.urlParts.currentSub}
                     fetchData={this.fetchData}
                     resetPage={this.resetPage}
                 />

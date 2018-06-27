@@ -1,12 +1,22 @@
 import React from 'react';
 
 const SubList = (props) => {
+    const { active, subs, filterChange, fetchData, resetPage, subChange } = props;
+    
     return (
         <div>
-            <ul className="subs-container">
-                {props.subs.map((sub, index) => (
+            <ul className="list-container">
+                {subs.map((sub, index) => (
                     <li key={index}>
-                        <button onClick = {() =>  {props.subChange(sub); props.filterChange('hot'); props.resetPage(); props.fetchData(); }}>{sub}</button>
+                        <button 
+                            className={active === sub ? "active" : ""} 
+                            onClick = {() =>  {subChange(sub); 
+                            filterChange('hot'); 
+                            resetPage(); 
+                            fetchData(); }}
+                        > 
+                        {sub} 
+                        </button>
                     </li>
                 ))}
             </ul>

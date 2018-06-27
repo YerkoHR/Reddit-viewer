@@ -50,14 +50,16 @@ export function saveUnsave(id) {
         const toSave = postToggleState.posts.find((post) => {
             return post.data.id === id
         });
-        //const firstState = getState();
+        
         if (toSave.data.saved){
+            localStorage.setItem(toSave.data.id, toSave.data.subreddit);
             dispatch(savePost(toSave));
         }else if(!toSave.data.saved){
             const toRemove = postToggleState.savePost.saved.findIndex((post) => 
             post.data.id === id);
 
             dispatch(unSavePost(toRemove));
+            localStorage.removeItem('1');
         }else{
             console.log('error')
         }

@@ -1,7 +1,8 @@
-.subs-container{
-    width: 90%;
+.list-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     border: 1px solid black;
+    .active{
+        background: aqua;
+    }
 }
