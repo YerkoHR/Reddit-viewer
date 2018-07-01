@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchData } from '../redux/ducks/posts';
+import { fetchData, toggleComments } from '../redux/ducks/posts';
 import { saveUnsave } from '../redux/ducks/savePost';
 import { subChange, filterChange, fetchPagination, resetPage } from '../redux/ducks/dinamiqURL';
 import Home from '../components/home';
@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) => {
         subChange: (sub) => dispatch(subChange(sub)),
         filterChange: (filter) => dispatch(filterChange(filter)),
         fetchPagination: (direction) => dispatch(fetchPagination(direction)),
-        resetPage: () => dispatch(resetPage())
+        resetPage: () => dispatch(resetPage()),
+        toggleComments: (index) => dispatch(toggleComments(index))
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

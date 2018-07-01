@@ -1,0 +1,16 @@
+.pag-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 40px auto; 
+    font-size: 1.2em;
+    i{
+        margin-top: 3px;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+    span{
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+}

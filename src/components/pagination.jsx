@@ -4,22 +4,21 @@ const Pagination = (props) => {
     const {fetchPagination, pag, fetchData } = props;
 
     return (
-        <div>
-            <button
+        <div className="pag-container">
+             <i 
+                className={pag.pagination.page <= 1 ? "fas fa-caret-left fa-lg fa-disabled" : "fas fa-caret-left fa-lg"}
+
                 onClick={() => {fetchPagination( 'prev'); fetchData();}} 
-                disabled={pag.pagination.page <= 1}
             >
-                &larr;
-            </button>
+            </i>
             <span>
                 page <b>{pag.pagination.page}</b> of <b>{pag.pagination.totalPages}</b>
             </span>
-            <button
+            <i className={pag.pagination.page >= pag.pagination.totalPages ? "fas fa-caret-right fa-lg fa-disabled" : "fas fa-caret-right fa-lg"}
                 onClick={() => {fetchPagination('next'); fetchData();}}
-                disabled={pag.pagination.page >= pag.pagination.totalPages}
             >
-                &rarr;
-            </button>
+                
+            </i>
         </div>
     );
 

@@ -1,8 +1,10 @@
+@import 
+    'utils/variables';
+
 .list-container{
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-    border: 1px solid black;
-    .active{
-        background: aqua;
-    }
+    margin: 20px 30px;
+    padding: 0;
+    box-shadow: $btn-shadow;
 }

@@ -1,9 +1,19 @@
 $font-stack: 'Montserrat', Helvetica, sans-serif;
 $background: #ffff;
 body {
-  font: $font-stack;
+  margin: 0;
+  font-family: $font-stack;
   background: $background;
 }
 li{
   list-style: none;
+}
+a{
+  text-decoration: none;
+}
+html {
+    overflow-y: scroll;
+} 
+h1{
+  text-align: center;
 }

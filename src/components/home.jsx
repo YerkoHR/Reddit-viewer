@@ -19,6 +19,9 @@ class Home extends Component {
     toggleState = (id) => {
         this.props.toggleState(id)
     };
+    toggleComments = (index) => {
+        this.props.toggleComments(index)
+    };
     fetchPagination = (direction) => {
         this.props.fetchPagination(direction)
     };
@@ -30,19 +33,47 @@ class Home extends Component {
     };
 
     render(){
-        const { errorFound, loading } = this.props;
+        const { loading } = this.props;
 
-        if (errorFound){
-            return <p>Sorry! error found loading posts!</p>
-        }
         if(loading){
-            return <h1>Loading...</h1>
+            return (
+                <div>
+                    <div className="header">
+                        <Link to="/">
+                        Home
+                        </Link>
+                        <Link to="/saved">
+                        Saved posts
+                        </Link>
+                    </div>
+                    <SubList
+                        subChange={this.subChange}
+                        filterChange={this.filterChange}
+                        subs={this.props.subs}
+                        active={this.props.filters.urlParts.currentSub}
+                        fetchData={this.fetchData}
+                        resetPage={this.resetPage}
+                    />
+                    <FilterList 
+                        filters={this.props.filters}
+                        filterChange={this.filterChange}
+                        fetchData={this.fetchData}
+                        resetPage={this.resetPage}
+                    />
+                    <div className="spinner-container"><div className="lds-dual-ring"></div></div>
+                </div>
+            )
         }
         return (
             <div>
-                <Link to="/saved">
-                    <button > Saved Posts </button>
-                </Link>
+                <div className="header">
+                    <Link to="/">
+                    Home
+                    </Link>
+                    <Link to="/saved">
+                    Saved posts 
+                    </Link>
+                </div>
                 <SubList
                     subChange={this.subChange}
                     filterChange={this.filterChange}
@@ -51,7 +82,7 @@ class Home extends Component {
                     fetchData={this.fetchData}
                     resetPage={this.resetPage}
                 />
-                <FilterList 
+                <FilterList
                     filters={this.props.filters}
                     filterChange={this.filterChange}
                     fetchData={this.fetchData}
@@ -60,6 +91,7 @@ class Home extends Component {
                 <PostList 
                     posts={this.props.posts}
                     toggleState={this.toggleState}
+                    toggleComments={this.toggleComments}
                 />
                 <Pagination 
                     pag={this.props.filters}

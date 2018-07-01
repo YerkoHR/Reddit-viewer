@@ -2,11 +2,17 @@
     'base/base';
 
 @import 
+    'components/buttons';
+
+@import 
     'layout/filterList',
     'layout/subList',
-    'layout/postList';
+    'layout/postList',
+    'layout/header',
+    'layout/pagination';
 
 @import 
     'utils/variables',
-    'utils/mixins';
+    'utils/mixins',
+    'utils/animations';
 

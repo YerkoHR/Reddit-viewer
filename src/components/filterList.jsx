@@ -9,7 +9,7 @@ const FilterList = (props) => {
                 {filters.normal.map((filter, index) => (
                     <li key={index}>
                         <button  
-                            className={filters.urlParts.currentFilter === filter ? "active" : ""} 
+                            className={filters.urlParts.currentFilter === filter ? "active btn" : "btn"} 
                             onClick = { () => {filterChange(filter); 
                             resetPage(); 
                             fetchData();}} 

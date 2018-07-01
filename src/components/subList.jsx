@@ -4,12 +4,12 @@ const SubList = (props) => {
     const { active, subs, filterChange, fetchData, resetPage, subChange } = props;
     
     return (
-        <div>
+
             <ul className="list-container">
                 {subs.map((sub, index) => (
                     <li key={index}>
                         <button 
-                            className={active === sub ? "active" : ""} 
+                            className={active === sub ? "active btn" : "btn"} 
                             onClick = {() =>  {subChange(sub); 
                             filterChange('hot'); 
                             resetPage(); 
@@ -20,7 +20,7 @@ const SubList = (props) => {
                     </li>
                 ))}
             </ul>
-        </div>
+
     )
 }
 
