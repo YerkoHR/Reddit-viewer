@@ -2,15 +2,14 @@ import update from 'immutability-helper';
 import axios from 'axios';
 import { errorFound } from './errorfound';
 import { Loading } from './isLoading';
-import { dinamiqURLCreator, setAfter, setBefore } from './dinamiqURL';
+import { URLGenerator, setAfter, setBefore } from './URL';
+import { fetchComments } from './comments';
 import moment from 'moment';
 
 const TOGGLE_SAVE = 'posts/TOGGLE_SAVE';
 const FETCH_SUCCESS = 'posts/FETCH_SUCCESS';
 const LOAD_SAVED = 'posts/LOAD_SAVED';
 const TOGGLE_COMMENTS = 'post/TOGGLE_COMMENTS';
-const K_FORMATTING = 'post/K_FORMATTING';
-const TIME_FORMATTING = 'post/TIME_FORMATTING';
 
 export default function reducer(state = [], action){
     switch(action.type){
@@ -30,10 +29,6 @@ export default function reducer(state = [], action){
                 data: {
                 clicked: {
                 $set: !state[action.index].data.clicked}}}});
-        case K_FORMATTING:
-            return  update(state, {$set: action.newFormat});
-        case TIME_FORMATTING: 
-            return  update(state, {$set: action.newFormat});
         default:
           return state;
     }
@@ -51,34 +46,18 @@ export function fetchDataSuccess(posts){
 export function loadSaved(posts){
     return { type: LOAD_SAVED, posts };
 }
-export function kFormat(newFormat){
-    return { type: K_FORMATTING, newFormat };
-}
-export function timeFormat(newFormat){
-    return { type: TIME_FORMATTING, newFormat };
-}
 
-export function formatPosts(posts){
-    posts.forEach((x)=>{
-        x.data.created_utc = moment.unix(x.data.created_utc).fromNow();
-    });
-
-    posts.forEach((x)=>{
-        x.data.score =  x.data.score>1000 ? (x.data.score / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : x.data.score;
-    
-    });
-}
 export function fetchData(){
     return (dispatch, getState) => {
 
         dispatch(Loading(true));
-        dispatch(dinamiqURLCreator());
-        let url = getState();
-        axios.get(url.dinamiqURL.urlParts.final)
+        dispatch(URLGenerator());
+        const state = getState();
+        axios.get(state.URL.final)
         .then((response) => {
             dispatch(setAfter(response.data.data.after));
             dispatch(setBefore(response.data.data.before));
-            const items = response.data.data.children.map((item) => {
+            let items = response.data.data.children.map((item) => {
                 return item;
             });
             dispatch(Loading(false));
@@ -86,34 +65,37 @@ export function fetchData(){
             formatPosts(items);
 
             let state = getState();
+            loadSavedPosts(items, state);
             
-            if(state.savePost.saved.length>0){
-                items.forEach((item) => 
-                    state.savePost.saved.forEach((saved) => {
-                        if(item.data.id === saved.data.id){
-                            item.data.saved = saved.data.saved;
-                        }
-                }));     
-           // dispatch(fetchDataSuccess(items));
-
-            }
+            //for (let i = 0; i < items.length; i++) {
+            //    dispatch(fetchComments(items[i].data.subreddit, items[i].data.id));
+            //}
             dispatch(fetchDataSuccess(items));
         })
         .catch(() => dispatch(errorFound(true)));
        
     } 
 }
+export function formatPosts(fetched){
+    fetched.forEach((post)=>{
+        post.data.created_utc = moment.unix(post.data.created_utc).fromNow();
+    });
 
+    fetched.forEach((post)=>{
+        post.data.score =  post.data.score>1000 ? (post.data.score / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : post.data.score;
+    
+    });
+}
+function loadSavedPosts(fetched, state){
 
-function loadSavedPosts(arr1, arr2){
+const favorites = state.favorites;
 
-    if(arr2.saved.length>0){
-        arr1.forEach((item) => 
-           arr2.saved.forEach((saved) => {
+    if(favorites.length > 0) {
+        fetched.forEach( (item) => 
+           favorites.forEach( (saved) => {
                 if(item.data.id === saved.data.id){
                     item.data.saved = saved.data.saved;
                 }
         }));     
     }
-    return arr1;
-} 
+}

@@ -1,18 +1,22 @@
 import update from 'immutability-helper';
 import { toggleSave } from './posts';
 
-const SAVE = 'savePost/SAVE';
-const UNSAVE = 'savePost/UNSAVE';
+const SAVE = 'favorites/SAVE';
+const TOGGLE_COMMENTS = 'favorites/TOGGLE_COMMENTS';
+const UNSAVE = 'favorites/UNSAVE';
 
-const initialState = {
-    saved: []
-}
-export default function reducer(state =  initialState, action){
+export default function reducer(state = [], action){
     switch(action.type){
         case SAVE:
-            return update(state, {saved:{ $push: [action.post] }});
+            return update(state, { $push: [action.post] });
         case UNSAVE:
-            return update(state, {saved:{$splice: [[action.index ,1]]}});
+            return update(state, {$splice: [[action.index ,1]]});
+        case TOGGLE_COMMENTS:
+            return update(state, {
+                [action.index]: { 
+                data: {
+                clicked: {
+                $set: !state[action.index].data.clicked}}}});
         default:
             return state;
     }
@@ -24,11 +28,14 @@ export function savePost(post){
 export function unSavePost(index){
     return { type: UNSAVE, index };
 }
+export function toggleComments(index){
+    return { type: TOGGLE_COMMENTS, index };
+}
 
 export function unSave(id){
     return (dispatch, getState) => {
         const  state = getState();
-        const toRemove = state.savePost.saved.findIndex((post) => 
+        const toRemove = state.favorites.findIndex((post) => 
         post.data.id === id);
         dispatch(unSavePost(toRemove));
     }
@@ -48,12 +55,12 @@ export function saveUnsave(id) {
         if (toSave.data.saved){
             dispatch(savePost(toSave));
         }else if(!toSave.data.saved){
-            const toRemove = postToggleState.savePost.saved.findIndex((post) => 
+            const toRemove = postToggleState.favorites.findIndex((post) => 
             post.data.id === id);
 
             dispatch(unSavePost(toRemove));
         }else{
-            console.log('error')
+            console.log('error');
         }
         
     }

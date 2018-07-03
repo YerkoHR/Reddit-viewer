@@ -4,8 +4,8 @@ const PostList = (props) => {
 
     return (
         <ul className="post-list">
-            {props.posts.map((item, index) => (   
-                <div key={item.data.id}>
+        {props.posts.map((item, index) => (   
+            <div key={item.data.id}> 
                 <li className="post" > 
                     <div className="title-container">
                         <a className="post-title" href={item.data.url} target="_blank">{item.data.title }</a>
@@ -25,23 +25,42 @@ const PostList = (props) => {
                     
                             <div> 
                                 <span>{item.data.num_comments} </span>
-                                <i className="fas fa-caret-down fa-lg drop-btn" onClick={ () => props.toggleComments(index)}></i>
+                                <i 
+                                    className="fas fa-caret-down fa-lg drop-btn" 
+                                    onClick={ () => {props.toggleComments(index);
+                                    !item.data.clicked ? 
+                                    props.fetchComments(item.data.subreddit, item.data.id) : 
+                                    props.removeComments(item.data.id);
+                                }}
+                                    >
+                                </i>
                             </div>
                         </div>
                     </div>
                     <div className="container-right">
                         <span>{item.data.score}</span>
-                        <div className="save-btn" onClick = { ()=> props.toggleState(item.data.id) }>{item.data.saved ?  <i className="far fa-star save"></i> : <i className="far fa-star"></i> } </div>
+                        <div 
+                            className="save-btn" 
+                            onClick = { ()=> props.toggleState(item.data.id)}
+                            >
+                            {item.data.saved ?  
+                            <i className="far fa-star save"></i> : 
+                            <i className="far fa-star"></i> } 
+                        </div>
                     </div>
                 </li>
-                <div
-                    key={index}
-                    className={item.data.clicked ? "show-comments " : "hide-comments" }>
+                {Object.keys(props.comments).length > 0 &&
+                <ul
+                    className={item.data.clicked ?
+                     "show-comments comments-container" : 
+                     "hide-comments comments-container"}>
+                {Object.keys(props.comments).map((key) => (
+                <li>{props.comments[key].map((x)=>x.body)}</li>
                     
-                    <p >COMMENT 1</p>
-                    <p >COMMENT 2</p>
-                </div>
-                </div>
+                ))}
+                  
+                </ul>}
+                </div> 
             ))}
         </ul>
     )

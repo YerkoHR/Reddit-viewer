@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { fetchData, toggleComments } from '../redux/ducks/posts';
-import { saveUnsave } from '../redux/ducks/savePost';
-import { subChange, filterChange, fetchPagination, resetPage } from '../redux/ducks/dinamiqURL';
+import { saveUnsave } from '../redux/ducks/favorites';
+import { fetchComments, removeComments } from '../redux/ducks/comments';
+import { subChange, filterChange, fetchPagination, resetPage } from '../redux/ducks/URL';
 import Home from '../components/home';
 
 function mapStateToProps  (state)  {
@@ -10,7 +11,8 @@ function mapStateToProps  (state)  {
         errorFound: state.errorFound,
         loading: state.isLoading,
         subs: state.subs,
-        filters: state.dinamiqURL
+        filters: state.URL,
+        comments: state.comments
     };
 }
 
@@ -22,7 +24,9 @@ const mapDispatchToProps = (dispatch) => {
         filterChange: (filter) => dispatch(filterChange(filter)),
         fetchPagination: (direction) => dispatch(fetchPagination(direction)),
         resetPage: () => dispatch(resetPage()),
-        toggleComments: (index) => dispatch(toggleComments(index))
+        toggleComments: (index) => dispatch(toggleComments(index)),
+        removeComments: (id) => dispatch(removeComments(id)),
+        fetchComments: (sub, id) => dispatch(fetchComments(sub, id))
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,16 +1,18 @@
 import { combineReducers } from 'redux';
-import dinamiqURL from './dinamiqURL';
+import URL from './URL';
 import posts from './posts';
-import savePost from './savePost';
+import favorites from './favorites';
 import errorFound from './errorfound';
 import isLoading from './isLoading';
 import subs from './subs';
+import comments from './comments';
 
 export default combineReducers({
     posts,
-    dinamiqURL,
-    savePost,
+    URL,
+    favorites,
     isLoading,
     errorFound,
-    subs
+    subs, 
+    comments
 });

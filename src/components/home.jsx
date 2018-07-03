@@ -4,6 +4,7 @@ import FilterList from './filterList';
 import PostList from './postList';
 import Pagination from './pagination';
 import { Link } from 'react-router-dom';
+import Comments from './comments';
 
 class Home extends Component {   
 
@@ -28,6 +29,12 @@ class Home extends Component {
     resetPage = () => {
         this.props.resetPage()
     };
+    fetchComments = (subreddit, id) => {
+        this.props.fetchComments(subreddit, id)
+    };
+    removeComments = (index) => {
+        this.props.removeComments(index)
+    };
     componentDidMount(){
         this.props.fetchData();
     };
@@ -43,7 +50,7 @@ class Home extends Component {
                         Home
                         </Link>
                         <Link to="/saved">
-                        Saved posts
+                        Favorites
                         </Link>
                     </div>
                     <SubList
@@ -71,7 +78,7 @@ class Home extends Component {
                     Home
                     </Link>
                     <Link to="/saved">
-                    Saved posts 
+                    Favorites 
                     </Link>
                 </div>
                 <SubList
@@ -92,14 +99,19 @@ class Home extends Component {
                     posts={this.props.posts}
                     toggleState={this.toggleState}
                     toggleComments={this.toggleComments}
+                    removeComments={this.removeComments}
+                    fetchComments={this.fetchComments}
+                    comments={this.props.comments}
                 />
                 <Pagination 
                     pag={this.props.filters}
                     fetchPagination={this.fetchPagination}
                     fetchData={this.fetchData}
                 />
+               
             </div>
         )
     }
 }
 export default Home;
+ //<Comments comments={this.props.comments}/> 

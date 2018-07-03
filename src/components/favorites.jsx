@@ -1,8 +1,9 @@
 import SubList from './subList';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PostList from './postList';
 
-class savedPosts extends Component {
+class favorites extends Component {
     subChange = (sub) => {
         this.props.subChange(sub)
     };
@@ -14,10 +15,21 @@ class savedPosts extends Component {
     };
     fetchData = () => {
         this.props.fetchData()
+    };    
+    toggleComments = (index) => {
+        this.props.toggleComments(index)
     };
-
+    unSave = (id) => {
+        this.props.unSave(id)
+    };
+    fetchComments = (subreddit, id) => {
+        this.props.fetchComments(subreddit, id)
+    };
+    removeComments = (index) => {
+        this.props.removeComments(index)
+    };
     render(){
-        const { saved, unSave } = this.props;
+        const { favorites } = this.props;
         return (
             <div>
                 <div className="header">
@@ -25,7 +37,7 @@ class savedPosts extends Component {
                         Home 
                     </Link>
                     <Link to="/saved">
-                        Saved posts
+                        Favorites
                     </Link>
                 </div>
                 <Link to="/">
@@ -37,23 +49,19 @@ class savedPosts extends Component {
                         fetchData={this.fetchData}
                         />
                 </Link>
-                {saved.saved.length <= 0 && <h1> No posts saved currently :( </h1>}
-                //
-                <ul className="post-list">
-                    {saved.saved.map((item, index) => (   
-                        <li className="post" key={item.data.id}>
-                            <span>{item.data.score}</span>
-                            <div className="title-container">
-                                <a className="post-title" href={item.data.url} target="_blank">{item.data.title }</a>
-                            </div>
-                            <button className="save-btn" onClick = { () => unSave(item.data.id) }>{(item.data.saved) ?  'unsave': 'save' } </button>
-                        </li>
-                        //
-                    ))}
-                </ul>
+                {favorites.length <= 0 && <h1> You have no favorite posts :( </h1>}
+                    <PostList
+                    posts={this.props.favorites}
+                    toggleState={this.unSave}
+                    toggleComments={this.toggleComments} 
+                    comments={this.props.comments}
+                    removeComments={this.removeComments}
+                    fetchComments={this.fetchComments}
+                    />
+
             </div>
         )
     }
 }
 
-export default savedPosts;
+export default favorites;

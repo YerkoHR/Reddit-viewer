@@ -1,15 +1,15 @@
 import update from 'immutability-helper';
 
-const SUB_CHANGE = 'dinamiqURL/SUB_CHANGE';
-const FILTER_CHANGE = 'dinamiqURL/FILTER_CHANGE';
-const TOP_CHANGE = 'dinamiqURL/TOP_CHANGE';
-const FINAL_URL = 'dinamiqURL/FINAL_URL';
-const RESET_URL = 'dinamiqURL/RESET_URL';
+const SUB_CHANGE = 'URL/SUB_CHANGE';
+const FILTER_CHANGE = 'URL/FILTER_CHANGE';
+const TOP_CHANGE = 'URL/TOP_CHANGE';
+const FINAL_URL = 'URL/FINAL_URL';
+const RESET_URL = 'URL/RESET_URL';
 const PAGE_CHANGE = 'dianmiqURL/PAGE_CHANGE';
-const RESET_PAGE = 'dinamiqURL/RESET_PAGE';
-const SET_AFTER = 'dinamiqURL/SET_AFTER';
-const SET_BEFORE = 'dinamiqURL/SET_BEFORE';
-const PAGE_DIRECTION = 'dinamiqURL/PAGE_DIRECTION';
+const RESET_PAGE = 'URL/RESET_PAGE';
+const SET_AFTER = 'URL/SET_AFTER';
+const SET_BEFORE = 'URL/SET_BEFORE';
+const PAGE_DIRECTION = 'URL/PAGE_DIRECTION';
 
 const initialState = {
     urlParts: {
@@ -20,8 +20,7 @@ const initialState = {
         limit: '.json?limit=25&t=',
         currentTop: 'day',
         countPag: '&count=25',
-        pagCode: '',
-        final: ''
+        pagCode: ''
     },
     normal: [ 'hot', 'new', 'rising', 'controversial'],
     top: [
@@ -37,7 +36,8 @@ const initialState = {
         totalPages: 20,
         after: '',
         before: ''
-    }
+    },
+    final: ''
 }
 
 export default function reducer(state = initialState, action){
@@ -67,13 +67,9 @@ export default function reducer(state = initialState, action){
             return update(state, {pagination:
                 {before:{ $set: action.before}}});
         case RESET_URL:
-            return update(state, {urlParts: {
-                final: { $set: '' }
-            }});
+            return update(state, { final: { $set: '' }});
         case FINAL_URL:
-            return update(state, {urlParts: {
-                final: { $set: action.final }
-            }});
+            return update(state, { final: { $set: action.final }});
         case RESET_PAGE:
             return (update(state, {
                 pagination:{page: {$set: 1}},
@@ -119,25 +115,25 @@ export function fetchPagination(direction){
     return (dispatch, getState) => {
 
         const state = getState();
-        let nextPage = state.dinamiqURL.pagination.page;
+        let nextPage = state.URL.pagination.page;
         nextPage = direction === 'next' ? nextPage + 1 : nextPage - 1;
 
-        let  urlPage = direction === 'next'? '&after=' + state.dinamiqURL.pagination.after : '&before=' + state.dinamiqURL.pagination.before;
+        let  urlPage = direction === 'next'? '&after=' + state.URL.pagination.after : '&before=' + state.URL.pagination.before;
 
         dispatch(pageChange(nextPage));
         dispatch(pageCode(urlPage));
     }
 }
 
-export function dinamiqURLCreator(){
+export function URLGenerator(){
     return (dispatch, getState) => {
         
         dispatch(resetURL());
-        const secondState = getState();
-        let sum = '';
-        for(let x in secondState.dinamiqURL.urlParts){
-            sum += secondState.dinamiqURL.urlParts[x];
+        const state = getState();
+        let URL = '';
+        for(let x in state.URL.urlParts){
+            URL += state.URL.urlParts[x];
         }  
-        dispatch(finalUrl(sum));
+        dispatch(finalUrl(URL));
     }
 }
