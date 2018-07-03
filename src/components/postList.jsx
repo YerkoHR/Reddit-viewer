@@ -1,5 +1,4 @@
 import React from 'react';
-
 const PostList = (props) => {
 
     return (
@@ -54,11 +53,7 @@ const PostList = (props) => {
                     className={item.data.clicked ?
                      "show-comments comments-container" : 
                      "hide-comments comments-container"}>
-                {Object.keys(props.comments).map((key) => (
-                <li>{props.comments[key].map((x)=>x.body)}</li>
-                    
-                ))}
-                  
+                  {props.comments[Object.keys(props.comments)[0]][0].ups}
                 </ul>}
                 </div> 
             ))}

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { errorFound } from './errorfound';
 import { Loading } from './isLoading';
 import { URLGenerator, setAfter, setBefore } from './URL';
-import { fetchComments } from './comments';
 import moment from 'moment';
 
 const TOGGLE_SAVE = 'posts/TOGGLE_SAVE';

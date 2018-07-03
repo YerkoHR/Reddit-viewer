@@ -4,7 +4,6 @@ import FilterList from './filterList';
 import PostList from './postList';
 import Pagination from './pagination';
 import { Link } from 'react-router-dom';
-import Comments from './comments';
 
 class Home extends Component {   
 
