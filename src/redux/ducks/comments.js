@@ -19,6 +19,7 @@ export default function reducer(state = {}, action){
 //return update(state, { [action.index]: {$set: []}})
 function removeByKey (myObj, deleteKey) {
     return Object.keys(myObj)
+    // eslint-disable-next-line
       .filter(key => key != deleteKey)
       .reduce((result, current) => {
         result[current] = myObj[current];

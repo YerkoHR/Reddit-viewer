@@ -113,4 +113,3 @@ class Home extends Component {
     }
 }
 export default Home;
- //<Comments comments={this.props.comments}/> 
