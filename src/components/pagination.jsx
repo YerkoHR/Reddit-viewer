@@ -1,20 +1,21 @@
 import React from 'react';
+import { urlTypes } from '../types';
 
 const Pagination = (props) => {
-    const {fetchPagination, pag, fetchData } = props;
+    const {fetchPagination, url, fetchData } = props;
 
     return (
         <div className="pag-container">
              <i 
-                className={pag.pagination.page <= 1 ? "fas fa-caret-left fa-lg fa-disabled" : "fas fa-caret-left fa-lg"}
+                className={url.pagination.page <= 1 ? "fas fa-caret-left fa-lg fa-disabled" : "fas fa-caret-left fa-lg"}
 
                 onClick={() => {fetchPagination( 'prev'); fetchData();}} 
             >
             </i>
             <span>
-                page <b>{pag.pagination.page}</b> of <b>{pag.pagination.totalPages}</b>
+                page <b>{url.pagination.page}</b> of <b>{url.pagination.totalPages}</b>
             </span>
-            <i className={pag.pagination.page >= pag.pagination.totalPages ? "fas fa-caret-right fa-lg fa-disabled" : "fas fa-caret-right fa-lg"}
+            <i className={url.pagination.page >= url.pagination.totalPages ? "fas fa-caret-right fa-lg fa-disabled" : "fas fa-caret-right fa-lg"}
                 onClick={() => {fetchPagination('next'); fetchData();}}
             >
                 
@@ -22,6 +23,10 @@ const Pagination = (props) => {
         </div>
     );
 
+}
+
+Pagination.propTypes = {
+    url: urlTypes.isRequired
 }
 
 export default Pagination;

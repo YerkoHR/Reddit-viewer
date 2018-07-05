@@ -11,7 +11,7 @@ export default function reducer(state = {}, action){
             return update(state, { [action.index]:
                 {$set:   action.comments }})
         case REMOVE_COMMENTS:
-            return removeByKey(state, action.index)
+            return removeByKey(state, `${action.index}`)
         default:
             return state;
     }
@@ -19,8 +19,7 @@ export default function reducer(state = {}, action){
 //return update(state, { [action.index]: {$set: []}})
 function removeByKey (myObj, deleteKey) {
     return Object.keys(myObj)
-    // eslint-disable-next-line
-      .filter(key => key != deleteKey)
+      .filter(key => key !== deleteKey)
       .reduce((result, current) => {
         result[current] = myObj[current];
         return result;
@@ -51,8 +50,4 @@ function formatPosts(fetched){
         post.created_utc = moment.unix(post.created_utc).fromNow();
     });
 
-    fetched.forEach((post)=>{
-        post.score =  post.score>1000 ? (post.score / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : post.score;
-    
-    });
 }

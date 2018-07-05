@@ -1,18 +1,25 @@
 import React from 'react';
+import { urlTypes } from '../types';
 
 const FilterList = (props) => {
-    const { filters, filterChange, fetchData, resetPage } = props;
+    const { url, filterChange, fetchData, resetPage } = props;
 
     return(
         <div>
             <ul className="list-container">
-                {filters.normal.map((filter, index) => (
+                {url.filters.map((filter, index) => (
                     <li key={index}>
                         <button  
-                            className={filters.urlParts.currentFilter === filter ? "active btn" : "btn"} 
-                            onClick = { () => {filterChange(filter); 
+                            className={
+                                url.urlParts.currentFilter === filter ? 
+                                "active btn" : 
+                                "btn"
+                            } 
+                            onClick = { () => {
+                            filterChange(filter); 
                             resetPage(); 
-                            fetchData();}} 
+                            fetchData();}
+                            } 
                         >
                         {filter}
                         </button>
@@ -23,4 +30,9 @@ const FilterList = (props) => {
 
     )
 }
+
+FilterList.propTypes = {
+    url: urlTypes.isRequired,
+}
+
 export default FilterList;

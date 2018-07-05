@@ -48,7 +48,7 @@ export function loadSaved(posts){
 
 export function fetchData(){
     return (dispatch, getState) => {
-
+        dispatch(errorFound(false));
         dispatch(Loading(true));
         dispatch(URLGenerator());
         const state = getState();
@@ -65,8 +65,12 @@ export function fetchData(){
 
             let state = getState();
             loadSavedPosts(items, state);
-            
+
             dispatch(fetchDataSuccess(items));
+            const checkRecieved = getState();
+            if(checkRecieved.posts.length < 25){
+                dispatch(errorFound(true));
+            }
         })
         .catch(() => dispatch(errorFound(true)));
        

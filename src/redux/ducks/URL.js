@@ -19,10 +19,10 @@ const initialState = {
         currentFilter: 'hot',
         limit: '.json?limit=25&t=',
         currentTop: 'day',
-        countPag: '&count=25',
+        countPag: '&count=30',
         pagCode: ''
     },
-    normal: [ 'hot', 'new', 'rising', 'controversial'],
+    filters: [ 'hot', 'new', 'rising', 'controversial'],
     top: [
         { text: 'Past hour', code:'hour'},
         { text: 'Past 24 hours', code:'day'}, 

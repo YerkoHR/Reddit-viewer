@@ -1,12 +1,13 @@
 import React from 'react';
+import { postsTypes, commentsTypes } from '../types';
 
 const PostList = (props) => {
     const { 
         posts, 
+        comments, 
         toggleComments, 
         fetchComments, 
         removeComments, 
-        comments, 
         toggleState } = props;
 
     return (
@@ -102,4 +103,10 @@ const PostList = (props) => {
         </ul>
     )
 }
+
+PostList.propTypes = {
+    posts: postsTypes.isRequired,
+    comments: commentsTypes.isRequired
+}
+
 export default PostList;

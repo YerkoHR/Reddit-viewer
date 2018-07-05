@@ -9,7 +9,8 @@ function mapStateToProps (state) {
     return {
         favorites: state.favorites,
         comments: state.comments,
-        subs: state.subs
+        subs: state.subs,
+        url: state.URL
     };
 }
 

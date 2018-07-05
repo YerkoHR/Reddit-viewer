@@ -11,7 +11,7 @@ function mapStateToProps  (state)  {
         errorFound: state.errorFound,
         loading: state.isLoading,
         subs: state.subs,
-        filters: state.URL,
+        url: state.URL,
         comments: state.comments
     };
 }
@@ -29,4 +29,5 @@ const mapDispatchToProps = (dispatch) => {
         fetchComments: (sub, id, index) => dispatch(fetchComments(sub, id, index))
     };
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

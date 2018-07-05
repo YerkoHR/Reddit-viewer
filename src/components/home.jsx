@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import SubList from './subList';
 import FilterList from './filterList';
 import PostList from './postList';
 import Pagination from './pagination';
-import { Link } from 'react-router-dom';
+import { postsTypes, commentsTypes, urlTypes, subsTypes } from '../types';
 
 class Home extends Component {   
 
@@ -39,7 +40,17 @@ class Home extends Component {
     };
 
     render(){
-        const { loading } = this.props;
+        const { loading, subs, url, posts, comments, errorFound } = this.props;
+        const { 
+            subChange, 
+            filterChange, 
+            fetchData, 
+            resetPage, 
+            fetchPagination, 
+            fetchComments, 
+            removeComments, 
+            toggleComments,
+            toggleState } = this;
 
         if(loading){
             return (
@@ -53,18 +64,18 @@ class Home extends Component {
                         </Link>
                     </div>
                     <SubList
-                        subChange={this.subChange}
-                        filterChange={this.filterChange}
-                        subs={this.props.subs}
-                        active={this.props.filters.urlParts.currentSub}
-                        fetchData={this.fetchData}
-                        resetPage={this.resetPage}
+                        subChange={subChange}
+                        filterChange={filterChange}
+                        subs={subs}
+                        url={url}
+                        fetchData={fetchData}
+                        resetPage={resetPage}
                     />
                     <FilterList 
-                        filters={this.props.filters}
-                        filterChange={this.filterChange}
-                        fetchData={this.fetchData}
-                        resetPage={this.resetPage}
+                        url={url}
+                        filterChange={filterChange}
+                        fetchData={fetchData}
+                        resetPage={resetPage}
                     />
                     <div className="spinner-container"><div className="lds-dual-ring"></div></div>
                 </div>
@@ -81,35 +92,43 @@ class Home extends Component {
                     </Link>
                 </div>
                 <SubList
-                    subChange={this.subChange}
-                    filterChange={this.filterChange}
-                    subs={this.props.subs}
-                    active={this.props.filters.urlParts.currentSub}
-                    fetchData={this.fetchData}
-                    resetPage={this.resetPage}
+                    subChange={subChange}
+                    filterChange={filterChange}
+                    subs={subs}
+                    url={url}
+                    fetchData={fetchData}
+                    resetPage={resetPage}
                 />
                 <FilterList
-                    filters={this.props.filters}
-                    filterChange={this.filterChange}
-                    fetchData={this.fetchData}
-                    resetPage={this.resetPage}
+                    url={url}
+                    filterChange={filterChange}
+                    fetchData={fetchData}
+                    resetPage={resetPage}
                 />
                 <PostList 
-                    posts={this.props.posts}
-                    toggleState={this.toggleState}
-                    toggleComments={this.toggleComments}
-                    removeComments={this.removeComments}
-                    fetchComments={this.fetchComments}
-                    comments={this.props.comments}
-                />
+                    posts={posts}
+                    toggleState={toggleState}
+                    toggleComments={toggleComments}
+                    removeComments={removeComments}
+                    fetchComments={fetchComments}
+                    comments={comments}
+                /> 
+                { !errorFound ? 
                 <Pagination 
-                    pag={this.props.filters}
-                    fetchPagination={this.fetchPagination}
-                    fetchData={this.fetchData}
-                />
-               
+                    url={url}
+                    fetchPagination={fetchPagination}
+                    fetchData={fetchData}
+                /> : <h1>No more posts in this page ;) </h1>}
             </div>
         )
     }
 }
+
+Home.propTypes = {
+    subs: subsTypes.isRequired,
+    url: urlTypes.isRequired,
+    posts: postsTypes.isRequired,
+    comments: commentsTypes.isRequired
+}
+
 export default Home;
