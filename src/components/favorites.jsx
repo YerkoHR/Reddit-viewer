@@ -22,8 +22,8 @@ class favorites extends Component {
     unSave = (id) => {
         this.props.unSave(id)
     };
-    fetchComments = (subreddit, id) => {
-        this.props.fetchComments(subreddit, id)
+    fetchComments = (subreddit, id, index) => {
+        this.props.fetchComments(subreddit, id, index)
     };
     removeComments = (index) => {
         this.props.removeComments(index)

@@ -28,8 +28,8 @@ class Home extends Component {
     resetPage = () => {
         this.props.resetPage()
     };
-    fetchComments = (subreddit, id) => {
-        this.props.fetchComments(subreddit, id)
+    fetchComments = (subreddit, id, index) => {
+        this.props.fetchComments(subreddit, id, index)
     };
     removeComments = (index) => {
         this.props.removeComments(index)

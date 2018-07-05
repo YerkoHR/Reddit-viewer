@@ -1,6 +1,6 @@
 import React from 'react';
-const PostList = (props) => {
 
+const PostList = (props) => {
     return (
         <ul className="post-list">
         {props.posts.map((item, index) => (   
@@ -27,10 +27,8 @@ const PostList = (props) => {
                                 <i 
                                     className="fas fa-caret-down fa-lg drop-btn" 
                                     onClick={ () => {props.toggleComments(index);
-                                    !item.data.clicked ? 
-                                    props.fetchComments(item.data.subreddit, item.data.id) : 
-                                    props.removeComments(item.data.id);
-                                }}
+                                        !item.data.clicked ? props.fetchComments(item.data.subreddit, item.data.id, index)
+                                        : props.removeComments(index);}}
                                     >
                                 </i>
                             </div>
@@ -48,12 +46,13 @@ const PostList = (props) => {
                         </div>
                     </div>
                 </li>
-                {Object.keys(props.comments).length > 0 &&
+                {props.comments[index] &&
+
                 <ul
                     className={item.data.clicked ?
                      "show-comments comments-container" : 
                      "hide-comments comments-container"}>
-                  {props.comments[Object.keys(props.comments)[0]][0].ups}
+                  {props.comments[index].map((x)=> <li key={x.id}>{x.author}</li>)}
                 </ul>}
                 </div> 
             ))}

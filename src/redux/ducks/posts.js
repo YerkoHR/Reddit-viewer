@@ -66,9 +66,6 @@ export function fetchData(){
             let state = getState();
             loadSavedPosts(items, state);
             
-            //for (let i = 0; i < items.length; i++) {
-            //    dispatch(fetchComments(items[i].data.subreddit, items[i].data.id));
-            //}
             dispatch(fetchDataSuccess(items));
         })
         .catch(() => dispatch(errorFound(true)));
@@ -88,7 +85,6 @@ export function formatPosts(fetched){
 function loadSavedPosts(fetched, state){
 
 const favorites = state.favorites;
-
     if(favorites.length > 0) {
         fetched.forEach( (item) => 
            favorites.forEach( (saved) => {

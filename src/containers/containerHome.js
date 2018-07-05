@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchPagination: (direction) => dispatch(fetchPagination(direction)),
         resetPage: () => dispatch(resetPage()),
         toggleComments: (index) => dispatch(toggleComments(index)),
-        removeComments: (id) => dispatch(removeComments(id)),
-        fetchComments: (sub, id) => dispatch(fetchComments(sub, id))
+        removeComments: (index) => dispatch(removeComments(index)),
+        fetchComments: (sub, id, index) => dispatch(fetchComments(sub, id, index))
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

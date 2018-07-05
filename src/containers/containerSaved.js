@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch) => {
         unSave: (id) => dispatch(unSave(id)),
         toggleComments: (index) => dispatch(toggleComments(index)),
         resetPage: () => dispatch(resetPage()),
-        removeComments: (id) => dispatch(removeComments(id)),
-        fetchComments: (subreddit, id) => dispatch(fetchComments(subreddit, id))
+        removeComments: (index) => dispatch(removeComments(index)),
+        fetchComments: (sub, id, index) => dispatch(fetchComments(sub, id, index))
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(favorites);
