@@ -1,5 +1,7 @@
 import React from 'react';
 import { urlTypes } from '../types';
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
 
 const FilterList = (props) => {
     const { url, filterChange, fetchData, resetPage } = props;
@@ -9,11 +11,11 @@ const FilterList = (props) => {
             <ul className="list-container">
                 {url.filters.map((filter, index) => (
                     <li key={index}>
-                        <button  
+                        <Button  
                             className={
                                 url.urlParts.currentFilter === filter ? 
-                                "active btn" : 
-                                "btn"
+                                "active " : 
+                                ""
                             } 
                             onClick = { () => {
                             filterChange(filter); 
@@ -22,7 +24,7 @@ const FilterList = (props) => {
                             } 
                         >
                         {filter}
-                        </button>
+                        </Button>
                     </li>
                 ))}
             </ul>

@@ -91,9 +91,30 @@ const PostList = (props) => {
                     "hide-comments comments-container"
                     }
                 >
-                    {comments[index].map((comment) => 
-                        <li key={comment.id}>
-                            {comment.author}
+                    {comments[index].slice(0, comments[index].length-1).map((comment) => 
+                        <li key={comment.id} className="comment">
+                            <div className="comment-info">
+                                <a 
+                                    href={"https://www.reddit.com/user/" + 
+                                    item.data.author}
+                                    target="_blank"
+                                >
+                                    {comment.author}
+                                </a>
+                                <span>{comment.score} points</span>
+                                
+                            </div>
+                            <p>{comment.body}</p>
+                            <div className="comment-info">
+                                <a 
+                                    href={"https://reddit.com" + 
+                                    item.data.permalink}
+                                    target="_blank"
+                                >
+                                    Permalink
+                                </a>
+                                <span>{comment.created_utc}</span>
+                            </div>    
                         </li>
                     )}
                 </ul>

@@ -37,6 +37,7 @@ class Home extends Component {
     };
     componentDidMount(){
         this.props.fetchData();
+        this.props.fetchTrending();
     };
 
     render(){

@@ -17,14 +17,6 @@ export default function reducer(state = {}, action){
     }
 }
 //return update(state, { [action.index]: {$set: []}})
-function removeByKey (myObj, deleteKey) {
-    return Object.keys(myObj)
-      .filter(key => key !== deleteKey)
-      .reduce((result, current) => {
-        result[current] = myObj[current];
-        return result;
-    }, {});
-  }
 
 export function storeComments(comments, index){
     return { type: STORE_COMMENTS, comments, index };
@@ -34,7 +26,7 @@ export function removeComments(index){
 }
 export function fetchComments(sub, id, index){
     return (dispatch) => {
-        axios.get(`https://www.reddit.com/r/${sub}/comments/${id}.json?limit=5&sort=hot`)
+        axios.get(`https://www.reddit.com/r/${sub}/comments/${id}.json?limit=3&sort=hot`)
         .then((response) => {
           
             const comments = response.data[1].data.children.map((comment) => {
@@ -50,4 +42,13 @@ function formatPosts(fetched){
         post.created_utc = moment.unix(post.created_utc).fromNow();
     });
 
+}
+
+function removeByKey (myObj, deleteKey) {
+    return Object.keys(myObj)
+      .filter(key => key !== deleteKey)
+      .reduce((result, current) => {
+        result[current] = myObj[current];
+        return result;
+    }, {});
 }

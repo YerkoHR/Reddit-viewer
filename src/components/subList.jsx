@@ -1,5 +1,7 @@
 import React from 'react';
 import { subsTypes, urlTypes } from '../types';
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
 
 const SubList = (props) => {
     const { url, subs, filterChange, fetchData, resetPage, subChange } = props;
@@ -7,17 +9,17 @@ const SubList = (props) => {
     return (
 
             <ul className="list-container">
-                {subs.map((sub, index) => (
+                {subs.user.map((sub, index) => (
                     <li key={index}>
-                        <button 
-                            className={url.urlParts.currentSub === sub ? "active btn" : "btn"} 
-                            onClick = {() =>  {subChange(sub); 
-                            filterChange('hot'); 
-                            resetPage(); 
-                            fetchData(); }}
-                        > 
-                        {sub} 
-                        </button>
+
+                                <Button
+                                className={url.urlParts.currentSub === sub ? "active " : ""} 
+                                onClick = {() =>  {subChange(sub); 
+                                filterChange('hot'); 
+                                resetPage(); 
+                                fetchData(); }}
+                                >{sub}</Button>
+
                     </li>
                 ))}
             </ul>
@@ -31,3 +33,18 @@ SubList.propTypes = {
 }
 
 export default SubList;
+
+/**
+ * 
+ * 
+ *                         <button 
+                            className={url.urlParts.currentSub === sub ? "active btn" : "btn"} 
+                            onClick = {() =>  {subChange(sub); 
+                            filterChange('hot'); 
+                            resetPage(); 
+                            fetchData(); }}
+                        > 
+                        {sub} 
+                        </button>
+ * 
+ */

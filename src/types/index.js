@@ -13,7 +13,13 @@ export const urlTypes = shape ({
     }),
     final: string.isRequired
 });
-export const subsTypes = arrayOf(string)
+export const subsTypes = shape({
+    user: arrayOf(string),
+    trending: arrayOf(shape({
+        sub: string,
+        subscriptors: string
+    }))
+})
 
 export const postsTypes = arrayOf(shape({
     kind: string,
