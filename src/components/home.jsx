@@ -31,13 +31,16 @@ class Home extends Component {
     };
     fetchComments = (subreddit, id, index) => {
         this.props.fetchComments(subreddit, id, index)
+    };    
+    fetchActive = (sub) => {
+        this.props.fetchActive(sub)
     };
     removeComments = (index) => {
         this.props.removeComments(index)
     };
     componentDidMount(){
         this.props.fetchData();
-        this.props.fetchTrending();
+        this.props.fetchDetails('trending_subreddits');
     };
 
     render(){
@@ -51,13 +54,21 @@ class Home extends Component {
             fetchComments, 
             removeComments, 
             toggleComments,
-            toggleState } = this;
+            toggleState,
+            fetchActive } = this;
 
         if(loading){
             return (
                 <div>
                     <div className="header">
-                        <Link to="/">
+                        <Link to="/"
+                         onClick={ () => {
+                        subChange('all'); 
+                        filterChange('hot'); 
+                        resetPage(); 
+                        fetchData();}}
+                        >
+                    
                         Home
                         </Link>
                         <Link to="/saved">
@@ -67,10 +78,12 @@ class Home extends Component {
                     <SubList
                         subChange={subChange}
                         filterChange={filterChange}
+                        resetPage={resetPage}
                         subs={subs}
                         url={url}
                         fetchData={fetchData}
-                        resetPage={resetPage}
+                        
+                        fetchActive={fetchActive}
                     />
                     <FilterList 
                         url={url}
@@ -85,8 +98,14 @@ class Home extends Component {
         return (
             <div>
                 <div className="header">
-                    <Link to="/">
-                    Home
+                    <Link to="/"
+                    onClick={ () => {
+                        subChange('all'); 
+                        filterChange('hot'); 
+                        resetPage(); 
+                        fetchData();}}
+                        >
+                        Home
                     </Link>
                     <Link to="/saved">
                     Favorites 
@@ -98,6 +117,7 @@ class Home extends Component {
                     subs={subs}
                     url={url}
                     fetchData={fetchData}
+                    fetchActive={fetchActive}
                     resetPage={resetPage}
                 />
                 <FilterList
@@ -107,12 +127,17 @@ class Home extends Component {
                     resetPage={resetPage}
                 />
                 <PostList 
+                    fetchData={fetchData}
                     posts={posts}
                     toggleState={toggleState}
                     toggleComments={toggleComments}
                     removeComments={removeComments}
                     fetchComments={fetchComments}
+                    fetchActive={fetchActive}
                     comments={comments}
+                    subChange={subChange}
+                    filterChange={filterChange}
+                    resetPage={resetPage}
                 /> 
                 { !errorFound ? 
                 <Pagination 

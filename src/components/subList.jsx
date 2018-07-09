@@ -4,7 +4,14 @@ import { Button } from 'antd';
 import 'antd/dist/antd.css';
 
 const SubList = (props) => {
-    const { url, subs, filterChange, fetchData, resetPage, subChange } = props;
+    const { 
+        url, 
+        subs, 
+        filterChange, 
+        fetchData, 
+        resetPage, 
+        subChange, 
+        fetchActive } = props;
     
     return (
 
@@ -17,7 +24,8 @@ const SubList = (props) => {
                                 onClick = {() =>  {subChange(sub); 
                                 filterChange('hot'); 
                                 resetPage(); 
-                                fetchData(); }}
+                                fetchData();
+                                sub !== 'all' && fetchActive(sub);}}
                                 >{sub}</Button>
 
                     </li>

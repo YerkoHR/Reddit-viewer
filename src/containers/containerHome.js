@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchData, toggleComments } from '../redux/ducks/posts';
 import { saveUnsave } from '../redux/ducks/favorites';
-import { fetchTrending } from '../redux/ducks/subs';
+import { fetchDetails, fetchActive } from '../redux/ducks/subs';
 import { fetchComments, removeComments } from '../redux/ducks/comments';
 import { subChange, filterChange, fetchPagination, resetPage } from '../redux/ducks/URL';
 import Home from '../components/home';
@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         toggleState: (id) => dispatch(saveUnsave(id)),
         fetchData: () => dispatch(fetchData()),
-        fetchTrending: () => dispatch(fetchTrending()),
+        fetchDetails: (sub) => dispatch(fetchDetails(sub)),
+        fetchActive: (sub) => dispatch(fetchActive(sub)),
         subChange: (sub) => dispatch(subChange(sub)),
         filterChange: (filter) => dispatch(filterChange(filter)),
         fetchPagination: (direction) => dispatch(fetchPagination(direction)),
