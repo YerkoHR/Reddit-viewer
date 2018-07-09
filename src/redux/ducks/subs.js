@@ -13,10 +13,7 @@ const initialState = {
 export default function reducer (state = initialState, action){
     switch(action.type){
         case UPDATE_SUBS:
-        return {...state, trending: action.update }
-            //return update(state, { trending:   { $set: {sub: action.update} } })
-        //case UPDATE_SUBSCRIBERS:
-        
+            return {...state, trending: action.update }
         default:
             return state;
     }
