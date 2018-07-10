@@ -41,18 +41,3 @@ SubList.propTypes = {
 }
 
 export default SubList;
-
-/**
- * 
- * 
- *                         <button 
-                            className={url.urlParts.currentSub === sub ? "active btn" : "btn"} 
-                            onClick = {() =>  {subChange(sub); 
-                            filterChange('hot'); 
-                            resetPage(); 
-                            fetchData(); }}
-                        > 
-                        {sub} 
-                        </button>
- * 
- */

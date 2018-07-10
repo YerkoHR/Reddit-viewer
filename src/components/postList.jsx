@@ -47,15 +47,12 @@ const PostList = (props) => {
                                 </span>
                             </a>
                             <a 
-                                //href={"https://www.reddit.com/" + 
-                                //item.data.subreddit_name_prefixed}
                                 onClick={() => { fetchActive(item.data.subreddit)
                                     subChange(item.data.subreddit); 
                                     filterChange('hot'); 
                                     resetPage(); 
                                     fetchData();
                                 }}
-                                target="_blank"
                             >
                                 {item.data.subreddit_name_prefixed}
                             </a>

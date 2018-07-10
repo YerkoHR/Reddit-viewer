@@ -1,11 +1,22 @@
 import React from 'react';
 
-const Trending = (props) => {
+const TrendingSubs = (props) => {
     return (
-        <div>
-
+         <div className="container-trending">
+            <p>Trending Subreddits</p>
+            <ul >
+                {props.subs.trending.map((trending) => (
+                    <li>
+                        <div class="trending-sub">
+                            <p>{trending.sub}</p>
+                            <span>{trending.subscribers} Subscribers</span>
+                            <button>Add</button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
 
-export default Trending;
+export default TrendingSubs;

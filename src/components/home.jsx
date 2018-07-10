@@ -3,49 +3,26 @@ import { Link } from 'react-router-dom';
 import SubList from './subList';
 import FilterList from './filterList';
 import PostList from './postList';
+import TrendingSubs from './trendingSubs';
+import SubDetails from './subDetails';
 import Pagination from './pagination';
 import { postsTypes, commentsTypes, urlTypes, subsTypes } from '../types';
 
 class Home extends Component {   
 
-    subChange = (sub) => {
-        this.props.subChange(sub)
-    };
-    filterChange = (sub) => {
-        this.props.filterChange(sub)
-    };
-    fetchData = () => {
-        this.props.fetchData()
-    };
-    toggleState = (id) => {
-        this.props.toggleState(id)
-    };
-    toggleComments = (index) => {
-        this.props.toggleComments(index)
-    };
-    fetchPagination = (direction) => {
-        this.props.fetchPagination(direction)
-    };
-    resetPage = () => {
-        this.props.resetPage()
-    };
-    fetchComments = (subreddit, id, index) => {
-        this.props.fetchComments(subreddit, id, index)
-    };    
-    fetchActive = (sub) => {
-        this.props.fetchActive(sub)
-    };
-    removeComments = (index) => {
-        this.props.removeComments(index)
-    };
     componentDidMount(){
         this.props.fetchData();
         this.props.fetchDetails('trending_subreddits');
     };
 
     render(){
-        const { loading, subs, url, posts, comments, errorFound } = this.props;
         const { 
+            loading, 
+            subs, 
+            url, 
+            posts, 
+            comments, 
+            errorFound, 
             subChange, 
             filterChange, 
             fetchData, 
@@ -55,46 +32,8 @@ class Home extends Component {
             removeComments, 
             toggleComments,
             toggleState,
-            fetchActive } = this;
+            fetchActive } = this.props;
 
-        if(loading){
-            return (
-                <div>
-                    <div className="header">
-                        <Link to="/"
-                         onClick={ () => {
-                        subChange('all'); 
-                        filterChange('hot'); 
-                        resetPage(); 
-                        fetchData();}}
-                        >
-                    
-                        Home
-                        </Link>
-                        <Link to="/saved">
-                        Favorites
-                        </Link>
-                    </div>
-                    <SubList
-                        subChange={subChange}
-                        filterChange={filterChange}
-                        resetPage={resetPage}
-                        subs={subs}
-                        url={url}
-                        fetchData={fetchData}
-                        
-                        fetchActive={fetchActive}
-                    />
-                    <FilterList 
-                        url={url}
-                        filterChange={filterChange}
-                        fetchData={fetchData}
-                        resetPage={resetPage}
-                    />
-                    <div className="spinner-container"><div className="lds-dual-ring"></div></div>
-                </div>
-            )
-        }
         return (
             <div>
                 <div className="header">
@@ -126,19 +65,33 @@ class Home extends Component {
                     fetchData={fetchData}
                     resetPage={resetPage}
                 />
-                <PostList 
-                    fetchData={fetchData}
-                    posts={posts}
-                    toggleState={toggleState}
-                    toggleComments={toggleComments}
-                    removeComments={removeComments}
-                    fetchComments={fetchComments}
-                    fetchActive={fetchActive}
-                    comments={comments}
-                    subChange={subChange}
-                    filterChange={filterChange}
-                    resetPage={resetPage}
-                /> 
+                <div className="main-content">
+                    {!loading ? 
+                    <PostList 
+                        fetchData={fetchData}
+                        posts={posts}
+                        toggleState={toggleState}
+                        toggleComments={toggleComments}
+                        removeComments={removeComments}
+                        fetchComments={fetchComments}
+                        fetchActive={fetchActive}
+                        comments={comments}
+                        subChange={subChange}
+                        filterChange={filterChange}
+                        resetPage={resetPage}
+                    /> :
+                    <div className="spinner-container">
+                        <div className="lds-dual-ring"></div>
+                    </div>}
+                    {url.urlParts.currentSub === 'all' ?
+                        <TrendingSubs
+                            subs={subs}
+                        />
+                        : <SubDetails 
+                            subs={subs}
+                        />
+                    }
+                </div>
                 { !errorFound ? 
                 <Pagination 
                     url={url}

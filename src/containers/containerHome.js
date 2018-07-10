@@ -17,20 +17,16 @@ function mapStateToProps  (state)  {
     };
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        toggleState: (id) => dispatch(saveUnsave(id)),
-        fetchData: () => dispatch(fetchData()),
-        fetchDetails: (sub) => dispatch(fetchDetails(sub)),
-        fetchActive: (sub) => dispatch(fetchActive(sub)),
-        subChange: (sub) => dispatch(subChange(sub)),
-        filterChange: (filter) => dispatch(filterChange(filter)),
-        fetchPagination: (direction) => dispatch(fetchPagination(direction)),
-        resetPage: () => dispatch(resetPage()),
-        toggleComments: (index) => dispatch(toggleComments(index)),
-        removeComments: (index) => dispatch(removeComments(index)),
-        fetchComments: (sub, id, index) => dispatch(fetchComments(sub, id, index))
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, {
+    toggleState: saveUnsave,
+    toggleComments,
+    fetchData,
+    fetchDetails,
+    fetchActive,
+    fetchPagination,
+    fetchComments,
+    subChange,
+    filterChange,
+    removeComments,
+    resetPage
+    })(Home);
