@@ -66,23 +66,31 @@ class Home extends Component {
                     resetPage={resetPage}
                 />
                 <div className="main-content">
-                    {!loading ? 
-                    <PostList 
-                        fetchData={fetchData}
-                        posts={posts}
-                        toggleState={toggleState}
-                        toggleComments={toggleComments}
-                        removeComments={removeComments}
-                        fetchComments={fetchComments}
-                        fetchActive={fetchActive}
-                        comments={comments}
-                        subChange={subChange}
-                        filterChange={filterChange}
-                        resetPage={resetPage}
-                    /> :
-                    <div className="spinner-container">
-                        <div className="lds-dual-ring"></div>
-                    </div>}
+                    <div>
+                        {!loading ? 
+                        <PostList 
+                            fetchData={fetchData}
+                            posts={posts}
+                            toggleState={toggleState}
+                            toggleComments={toggleComments}
+                            removeComments={removeComments}
+                            fetchComments={fetchComments}
+                            fetchActive={fetchActive}
+                            comments={comments}
+                            subChange={subChange}
+                            filterChange={filterChange}
+                            resetPage={resetPage}
+                        /> :
+                        <div className="spinner-container">
+                            <div className="lds-dual-ring"></div>
+                        </div>}
+                            { !errorFound ? 
+                            <Pagination 
+                                url={url}
+                                fetchPagination={fetchPagination}
+                                fetchData={fetchData}
+                            /> : <h1>No more posts in this page ;) </h1>}
+                     </div>   
                     {url.urlParts.currentSub === 'all' ?
                         <TrendingSubs
                             subs={subs}
@@ -91,13 +99,9 @@ class Home extends Component {
                             subs={subs}
                         />
                     }
+
                 </div>
-                { !errorFound ? 
-                <Pagination 
-                    url={url}
-                    fetchPagination={fetchPagination}
-                    fetchData={fetchData}
-                /> : <h1>No more posts in this page ;) </h1>}
+
             </div>
         )
     }

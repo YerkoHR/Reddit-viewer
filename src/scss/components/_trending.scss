@@ -1,0 +1,33 @@
+.container__info {
+    margin: 20px auto;
+    font-size: 13px;
+    padding: 20px;
+    @at-root #{&}--border{
+      border: 1px solid lightblue;
+        padding: 20px;  
+    }
+}
+.container__trending{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+
+    @at-root #{&}--sub{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+}
+.container__info--title{
+    font-weight: bold;
+}
+.underlined{
+    color: black;
+    &:hover{
+        text-decoration: underline;
+        color: black;
+    }
+}
+.subscribers{
+    font-size: 12px;
+}
+

@@ -2,14 +2,17 @@
     'base/base';
 
 @import 
-    'components/comments';
+    'components/comments',
+    'components/trending',
+    'components/subDetails';
 
 @import 
     'layout/filterList',
     'layout/subList',
     'layout/postList',
     'layout/header',
-    'layout/pagination';
+    'layout/pagination',
+    'layout/mainContent';
 
 @import 
     'utils/variables',

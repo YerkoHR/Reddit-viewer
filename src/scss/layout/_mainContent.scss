@@ -1,0 +1,14 @@
+@import
+    'utils/mixins';
+
+
+.main-content{
+    @include respond-to('large'){
+        display: grid;
+        grid-template-columns: 10fr 4fr;
+    }
+    @include respond-to('medium'){
+        display: grid;
+        grid-template-columns: 10fr 4fr;
+    }
+}

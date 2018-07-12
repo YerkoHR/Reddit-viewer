@@ -3,7 +3,7 @@ import axios from 'axios';
 const ADD = 'subs/ADD';
 const TRENDING_DETAILS = 'subs/TRENDING_DETAILS';
 const UPDATE_ACTIVE = 'subs/UPDATE_ACTIVE';
-const USER_SUBS = 'subs/USER_SUBS';
+//const USER_SUBS = 'subs/USER_SUBS';
 
 const initialState = {
    user: ['all', 'animemes', 'leagueoflegends'],
@@ -68,8 +68,13 @@ export function fetchActive(sub){
         
         axios.get(`https://www.reddit.com/r/${sub}/about.json`)
             .then((response) => {
+                formatPosts(response.data.data)
                 dispatch(UpdateActive(Object.assign({}, response.data.data)));
             })
         }
 
+}
+function formatPosts(fetched){
+    fetched.active_user_count =  fetched.active_user_count>1000 ? (fetched.active_user_count / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : fetched.active_user_count;
+    fetched.subscribers =  fetched.subscribers>1000 ? (fetched.subscribers / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : fetched.subscribers;
 }

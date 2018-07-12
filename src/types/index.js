@@ -16,7 +16,7 @@ export const urlTypes = shape ({
 export const subsTypes = shape({
     user: arrayOf(string),
     active: shape({
-        subscribers: number
+        subscribers: string
     }),
     trending: arrayOf(shape({
         sub: string,

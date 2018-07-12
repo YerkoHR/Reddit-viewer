@@ -1,0 +1,26 @@
+.container__details{
+    padding: 0 20px;
+    display: grid;
+    grid-template-rows: 1fr repeat(2, 2fr) 1fr;
+    @at-root #{&}--sub{
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    @at-root #{&}--title{
+        font-size: 11px;
+        font-weight: bold;
+    }
+    @at-root #{&}--numbers{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+    @at-root #{&}--desc{
+
+    }
+}
+.numbers__column{
+    display: flex;
+    flex-direction: column;
+}
