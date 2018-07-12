@@ -1,33 +1,40 @@
-.container__info {
+@import
+    'utils/variables';
+    
+.container-info {
     margin: 20px auto;
     font-size: 13px;
     padding: 20px;
-    @at-root #{&}--border{
-      border: 1px solid lightblue;
-        padding: 20px;  
+}
+
+.container__box{
+    box-shadow: $shadow; 
+    border-radius: 20px;
+    padding: 20px;  
+    &--title{
+        font-weight: bold;
     }
 }
-.container__trending{
+
+.trending{
     display: grid;
     grid-template-columns: 5fr 1fr;
 
-    @at-root #{&}--sub{
+    &__sub{
         display: flex;
         flex-direction: column;
         margin-bottom: 10px;
     }
-}
-.container__info--title{
-    font-weight: bold;
-}
-.underlined{
-    color: black;
-    &:hover{
-        text-decoration: underline;
+    &--underlined{
         color: black;
+        &:hover{
+            text-decoration: underline;
+            color: black;
+        }
+    }
+    &__subscribers{
+        font-size: 12px;
     }
 }
-.subscribers{
-    font-size: 12px;
-}
+
 

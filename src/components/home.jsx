@@ -81,8 +81,8 @@ class Home extends Component {
                             filterChange={filterChange}
                             resetPage={resetPage}
                         /> :
-                        <div className="spinner-container">
-                            <div className="lds-dual-ring"></div>
+                        <div className="spinner">
+                            <div className="spinner__animation"></div>
                         </div>}
                             { !errorFound ? 
                             <Pagination 

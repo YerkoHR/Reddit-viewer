@@ -1,4 +1,4 @@
-.pag-container{
+.container-pag{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -7,7 +7,6 @@
     i{
         margin-top: 3px;
         margin-right: 5px;
-        cursor: pointer;
     }
     span{
         margin-right: 5px;

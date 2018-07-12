@@ -1,6 +1,6 @@
 .header{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-    margin: 40px 30px 20px;
+    margin: 70px 30px 90px;
 }

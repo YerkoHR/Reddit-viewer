@@ -5,33 +5,13 @@ import SubList from './subList';
 import { commentsTypes, subsTypes, postsTypes } from '../types';
 
 class favorites extends Component {
-    subChange = (sub) => {
-        this.props.subChange(sub)
-    };
-    filterChange = (sub) => {
-        this.props.filterChange(sub)
-    };
-    resetPage = () => {
-        this.props.resetPage()
-    };
-    fetchData = () => {
-        this.props.fetchData()
-    };    
-    toggleComments = (index) => {
-        this.props.toggleComments(index)
-    };
-    unSave = (id) => {
-        this.props.unSave(id)
-    };
-    fetchComments = (subreddit, id, index) => {
-        this.props.fetchComments(subreddit, id, index)
-    };
-    removeComments = (index) => {
-        this.props.removeComments(index)
-    };
+
     render(){
-        const { favorites, subs, comments, url } = this.props;
         const { 
+            favorites, 
+            subs, 
+            comments, 
+            url,
             filterChange, 
             subChange, 
             resetPage, 
@@ -39,7 +19,8 @@ class favorites extends Component {
             unSave, 
             toggleComments, 
             removeComments, 
-            fetchComments } = this;
+            fetchComments,
+            fetchActive } = this.props;
 
         return (
             <div>
@@ -59,17 +40,19 @@ class favorites extends Component {
                         url={url}
                         resetPage={resetPage}
                         fetchData={fetchData}
+                        fetchActive={fetchActive}
                     />
                 </Link>
-                {favorites.length <= 0 && <h1> You have no favorite posts :( </h1>}
-                    <PostList
+                {favorites.length <= 0 ? <h1> You have no favorite posts :( </h1>
+                    :<PostList                        
+                    fetchActive={fetchActive}                        
                     posts={favorites}
                     toggleState={unSave}
                     toggleComments={toggleComments} 
                     comments={comments}
                     removeComments={removeComments}
                     fetchComments={fetchComments}
-                    />
+                    />}
 
             </div>
         )

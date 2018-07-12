@@ -1,0 +1,23 @@
+.comment--show{
+    margin: 10px;
+    .comment{
+        border-bottom: .5px solid lightgrey;
+        display: grid;
+        grid-template-rows: 20px 1fr 20px;
+        text-align: center;
+        &__info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 3px;
+            font-size: 13px;
+        }
+        &__link{
+            color: black;
+        }
+
+    }
+}
+.comment--hide{
+    display: none;
+}

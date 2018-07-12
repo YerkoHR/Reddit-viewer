@@ -1,29 +1,10 @@
 @import 
     'utils/variables';
 
-.btn{
-    padding: 12px 8px;
-    border: 0;
-    cursor: pointer;
-    background: #ffffff;
-    &:hover{
-        background: $btn-color;
-        transition: 0.5s;
-    }
-}
 .active{
     background: $btn-color;
 }
-.save-btn{
-    cursor: pointer;
-    .save{
-        color: orange;
-    }
-}
-.drop-btn{
-    cursor: pointer;
-    justify-items: end;
-}
+
 .fa-disabled {
     opacity: 0.6;
     pointer-events: none;

@@ -4,18 +4,18 @@ import 'antd/dist/antd.css';
 
 const TrendingSubs = (props) => {
     return (
-         <div className="container__info">
-            <div className="container__info--border">
-                <p className="container__info--title">Trending Subreddits</p>
+         <div className="container-info fade-in">
+            <div className="container__box">
+                <p className="container__box--title">Trending Subreddits</p>
                 <ul>
                     {props.subs.trending.map((trending, index) => (
                         <li key={index}>
-                            <div className="container__trending">
-                                <div className="container__trending--sub">
-                                    <a className="underlined">r/{trending.sub}</a>
-                                    <span className="subscribers">{trending.subscribers.toLocaleString()} Subscribers</span>
+                            <div className="trending">
+                                <div className="trending__sub">
+                                    <a className="trending--underlined">r/{trending.sub}</a>
+                                    <span className="trending__subscribers">{trending.subscribers.toLocaleString()} Subscribers</span>
                                 </div>
-                                <Button className="container__trending--btn">+</Button>
+                                <Button>+</Button>
                             </div>
                         </li>
                     ))}

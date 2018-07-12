@@ -15,7 +15,7 @@ const SubList = (props) => {
     
     return (
 
-            <ul className="list-container">
+            <ul className="list">
                 {subs.user.map((sub, index) => (
                     <li key={index}>
 

@@ -8,7 +8,7 @@ const FilterList = (props) => {
 
     return(
         <div>
-            <ul className="list-container">
+            <ul className="list">
                 {url.filters.map((filter, index) => (
                     <li key={index}>
                         <Button  

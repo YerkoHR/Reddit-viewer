@@ -2,7 +2,7 @@
     'utils/variables', 
     'utils/mixins';
     
-.post-list{
+.container-post{
     margin: 20px 30px;
     list-style: none;
     padding: 0;  
@@ -23,13 +23,13 @@
         border: .5px solid lightgrey;
     }
 
-    .title-container{
+    &__title{
         display: grid;
         grid-template-rows: 1.5fr 25px;
         justify-items: start;     
         align-items: center; 
     }
-    .post-title{
+    &__title--style{
         color: black;
         text-decoration: none;
         font-size: 14px;
@@ -44,14 +44,13 @@
         }
     }
 }
-.post-info{
-
+.post__details{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     font-size: 12px;
-    a{
+    .post__link{
         color: rgb(124, 124, 124);
         text-decoration: none;
         margin-right: 10px;
@@ -59,44 +58,17 @@
             text-decoration: underline;
         }
     }
-
-    
-}
-.container-right{
+    &--right{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-}
-.show-comments{
-
-    box-shadow: $shadow;
-    margin: 10px;
-    .comment{
-        border-bottom: .5px solid lightgrey;
-        display: grid;
-        grid-template-rows: 20px 1fr 20px;
-        p{
-            text-align: center;
-        }
-        .comment-info{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin: 3px;
-            font-size: 13px;
-        }
-        a{
-            color: black;
+        .save{
+            color: #FFD166;
         }
     }
 }
-.hide-comments{
-    display: none;
-}
-.save{
-    color: #FFD166;
-}
+
 
     
     

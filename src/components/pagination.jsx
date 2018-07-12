@@ -5,7 +5,7 @@ const Pagination = (props) => {
     const {fetchPagination, url, fetchData } = props;
 
     return (
-        <div className="pag-container">
+        <div className="container-pag">
              <i 
                 className={url.pagination.page <= 1 ? "fas fa-caret-left fa-lg fa-disabled" : "fas fa-caret-left fa-lg"}
 
@@ -17,8 +17,7 @@ const Pagination = (props) => {
             </span>
             <i className={url.pagination.page >= url.pagination.totalPages ? "fas fa-caret-right fa-lg fa-disabled" : "fas fa-caret-right fa-lg"}
                 onClick={() => {fetchPagination('next'); fetchData();}}
-            >
-                
+            > 
             </i>
         </div>
     );

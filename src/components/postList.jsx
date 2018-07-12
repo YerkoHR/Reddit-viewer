@@ -16,20 +16,21 @@ const PostList = (props) => {
         resetPage } = props;
 
     return (
-        <ul className="post-list">
+        <ul className="container-post">
         {posts.map((item, index) => (  
             <div key={item.data.id}> 
                 <li className="post"> 
-                    <div className="title-container">
+                    <div className="post__title">
                         <a 
-                            className="post-title" 
+                            className="post__title--style" 
                             href={item.data.url} 
                             target="_blank"
                         >
                         {item.data.title}
                         </a>
-                        <div className="post-info">
+                        <div className="post__details">
                             <a 
+                                className="post__link"
                                 href={"https://reddit.com" + 
                                 item.data.permalink}
                                 target="_blank"
@@ -37,6 +38,7 @@ const PostList = (props) => {
                                 {item.data.created_utc}
                             </a>
                             <a 
+                                className="post__link"
                                 href={"https://www.reddit.com/user/" + 
                                 item.data.author}
                                 target="_blank"
@@ -47,6 +49,7 @@ const PostList = (props) => {
                                 </span>
                             </a>
                             <a 
+                                className="post__link"
                                 onClick={() => { fetchActive(item.data.subreddit)
                                     subChange(item.data.subreddit); 
                                     filterChange('hot'); 
@@ -62,7 +65,7 @@ const PostList = (props) => {
                                     {item.data.num_comments}
                                 </span>
                                 <i 
-                                    className="fas fa-caret-down fa-lg drop-btn" 
+                                    className="fas fa-caret-down fa-lg" 
                                     onClick={ () => {
                                     toggleComments(index);
                                     !item.data.clicked ? 
@@ -74,12 +77,11 @@ const PostList = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="container-right">
+                    <div className="post__details--right">
                         <span>
                             {item.data.score}
                         </span>
                         <div 
-                            className="save-btn" 
                             onClick = { ()=> 
                             toggleState(item.data.id)
                             }
@@ -95,14 +97,15 @@ const PostList = (props) => {
                 <ul
                     className={
                     item.data.clicked ?
-                    "show-comments comments-container" : 
-                    "hide-comments comments-container"
+                    "comment--show " : 
+                    "comment--hide "
                     }
                 >
                     {comments[index].slice(0, comments[index].length-1).map((comment) => 
                         <li key={comment.id} className="comment">
-                            <div className="comment-info">
+                            <div className="comment__info">
                                 <a 
+                                    className="comment__link"
                                     href={"https://www.reddit.com/user/" + 
                                     item.data.author}
                                     target="_blank"
@@ -113,8 +116,9 @@ const PostList = (props) => {
                                 
                             </div>
                             <p>{comment.body}</p>
-                            <div className="comment-info">
+                            <div className="comment__info">
                                 <a 
+                                    className="comment__link"
                                     href={"https://reddit.com" + 
                                     item.data.permalink}
                                     target="_blank"
