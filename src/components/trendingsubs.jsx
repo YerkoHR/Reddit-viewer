@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 const TrendingSubs = (props) => {
     return (
          <div className="container-info fade-in">
-            <div className="container__box">
+            <div className="container__box white">
                 <p className="container__box--title">Trending Subreddits</p>
                 <ul>
                     {props.subs.trending.map((trending, index) => (

@@ -1,5 +1,9 @@
+@import    
+  'utils/variables';
+
 $font-stack: 'Montserrat', Helvetica, sans-serif;
-$background: #ffff;
+$background: $grey;
+
 body {
   margin: 0;
   font-family: $font-stack;
@@ -23,4 +27,7 @@ h1{
 }
 i{
   cursor: pointer;
+}
+.white{
+  background: $white;
 }

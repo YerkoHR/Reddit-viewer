@@ -1,4 +1,6 @@
 import React from 'react';
+import { Icon } from 'antd';
+import 'antd/dist/antd.css';
 import { postsTypes, commentsTypes } from '../types';
 
 const PostList = (props) => {
@@ -16,7 +18,7 @@ const PostList = (props) => {
         resetPage } = props;
 
     return (
-        <ul className="container-post">
+        <ul className="container-post white">
         {posts.map((item, index) => (  
             <div key={item.data.id}> 
                 <li className="post"> 
@@ -60,20 +62,29 @@ const PostList = (props) => {
                                 {item.data.subreddit_name_prefixed}
                             </a>
                     
-                            <div> 
-                                <span>
+                            <div className="post__comments"> 
+                                <span className="post__comments--num"> 
                                     {item.data.num_comments}
                                 </span>
-                                <i 
-                                    className="fas fa-caret-down fa-lg" 
+                                {!item.data.clicked ? 
+                                <Icon type="caret-down"  
+                                    className="post__comments--icon-down"
                                     onClick={ () => {
                                     toggleComments(index);
                                     !item.data.clicked ? 
                                     fetchComments(item.data.subreddit, item.data.id, index)
                                     : removeComments(index);
                                     }}
-                                >
-                                </i>
+                                /> : 
+                                    <Icon type="caret-up" 
+                                    className="post__comments--icon-up"
+                                    onClick={ () => {
+                                    toggleComments(index);
+                                    !item.data.clicked ? 
+                                    fetchComments(item.data.subreddit, item.data.id, index)
+                                    : removeComments(index);
+                                    }}
+                                />}      
                             </div>
                         </div>
                     </div>
@@ -87,8 +98,8 @@ const PostList = (props) => {
                             }
                         >
                             {item.data.saved ?  
-                            <i className="far fa-star save"></i> : 
-                            <i className="far fa-star"></i> 
+                            <Icon type="star" className="star save"/> :
+                            <Icon type="star" className="star"/>
                             } 
                         </div>
                     </div>

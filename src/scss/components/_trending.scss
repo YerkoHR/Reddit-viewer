@@ -8,8 +8,8 @@
 }
 
 .container__box{
-    box-shadow: $shadow; 
-    border-radius: 20px;
+    border: $border; 
+    border-radius: 5px;
     padding: 20px;  
     &--title{
         font-weight: bold;

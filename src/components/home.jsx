@@ -36,7 +36,7 @@ class Home extends Component {
 
         return (
             <div>
-                <div className="header">
+                <div className="header white">
                     <Link to="/"
                     onClick={ () => {
                         subChange('all'); 

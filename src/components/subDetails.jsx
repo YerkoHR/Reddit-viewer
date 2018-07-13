@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 const SubDetails = ({ subs }) => {
     return (
         <div className="container-info fade-in">
-            <div className="container__box">
+            <div className="container__box white">
                 <div className="container__details">
                     <p className="container__details--title">Community details</p>
                     <div className="container__details--sub">
