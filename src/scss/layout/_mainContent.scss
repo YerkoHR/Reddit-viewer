@@ -1,7 +1,6 @@
 @import
     'utils/mixins';
 
-
 .main-content{
     @include respond-to('large'){
         display: grid;

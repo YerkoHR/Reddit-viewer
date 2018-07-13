@@ -28,26 +28,32 @@ class Home extends Component {
             fetchData, 
             resetPage, 
             fetchPagination, 
+            topChange,
             fetchComments, 
             removeComments, 
             toggleComments,
             toggleState,
+            addSub,
             fetchActive } = this.props;
 
         return (
             <div>
                 <div className="header white">
+                    <div>
+                        <img className="header__logo"src={require('../images/reddit.svg')} alt=""/>
+                        <span>My reddit viewer</span>
+                    </div>
                     <Link to="/"
-                    onClick={ () => {
+                        onClick={ () => {
                         subChange('all'); 
                         filterChange('hot'); 
                         resetPage(); 
                         fetchData();}}
-                        >
+                    >
                         Home
                     </Link>
                     <Link to="/saved">
-                    Favorites 
+                        Favorites 
                     </Link>
                 </div>
                 <SubList
@@ -64,6 +70,7 @@ class Home extends Component {
                     filterChange={filterChange}
                     fetchData={fetchData}
                     resetPage={resetPage}
+                    topChange={topChange}
                 />
                 <div className="main-content">
                     <div>
@@ -94,9 +101,21 @@ class Home extends Component {
                     {url.urlParts.currentSub === 'all' ?
                         <TrendingSubs
                             subs={subs}
+                            subChange={subChange}
+                            filterChange={filterChange}
+                            resetPage={resetPage}
+                            fetchActive={fetchActive}
+                            fetchData={fetchData}
+                            addSub={addSub}
                         />
                         : <SubDetails 
                             subs={subs}
+                            fetchActive={fetchActive}
+                            subChange={subChange}
+                            filterChange={filterChange}
+                            fetchData={fetchData}
+                            addSub={addSub}
+                            resetPage={resetPage}
                         />
                     }
 

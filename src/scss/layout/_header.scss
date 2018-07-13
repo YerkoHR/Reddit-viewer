@@ -1,8 +1,26 @@
+@import
+    'utils/variables';
+
 .header{
+    border-bottom: $border;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
+    grid-template-columns: 10fr 1fr 1fr;
+    column-gap: 10px;
+    justify-items: start;
+    align-items: center;
     padding: 20px 30px;
     margin-bottom: 40px;
-    color: black;
+    font-weight: bold;
+    a{
+
+        color: black;
+        &:hover{
+            color: $light-blue;
+        }
+    }
+    &__logo{
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+    }
 }

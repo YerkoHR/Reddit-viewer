@@ -22,7 +22,7 @@ const initialState = {
         countPag: '&count=30',
         pagCode: ''
     },
-    filters: [ 'hot', 'new', 'rising', 'controversial'],
+    filters: [ 'hot', 'new', 'rising'],
     top: [
         { text: 'Past hour', code:'hour'},
         { text: 'Past 24 hours', code:'day'}, 

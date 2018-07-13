@@ -14,21 +14,19 @@ const SubList = (props) => {
         fetchActive } = props;
     
     return (
-
             <ul className="list">
                 {subs.user.map((sub, index) => (
                     <li key={index}>
-
-                                
-                                <Button
-                                className={url.urlParts.currentSub === sub ? "active " : ""} 
-                                onClick = {() =>  {subChange(sub); 
-                                filterChange('hot'); 
-                                resetPage(); 
-                                fetchData();
-                                sub !== 'all' && fetchActive(sub);}}
-                                >{sub}</Button>
-
+                        <Button
+                        className={url.urlParts.currentSub === sub ? "active " : ""} 
+                        onClick = {() =>  {subChange(sub); 
+                        filterChange('hot'); 
+                        resetPage(); 
+                        fetchData();
+                        sub !== 'all' && fetchActive(sub);}}
+                    >
+                        {sub}
+                    </Button>
                     </li>
                 ))}
             </ul>

@@ -24,8 +24,18 @@ class favorites extends Component {
 
         return (
             <div>
-                <div className="header">
-                    <Link to="/">
+                <div className="header white">
+                    <div>
+                        <img className="header__logo"src={require('../images/reddit.svg')} alt=""/>
+                        <span>My reddit viewer</span>
+                    </div>
+                    <Link to="/"
+                         onClick={ () => {
+                        subChange('all'); 
+                        filterChange('hot'); 
+                        resetPage(); 
+                        fetchData();}}
+                    >
                         Home 
                     </Link>
                     <Link to="/saved">
@@ -43,7 +53,7 @@ class favorites extends Component {
                         fetchActive={fetchActive}
                     />
                 </Link>
-                {favorites.length <= 0 ? <h1> You have no favorite posts :( </h1>
+                {favorites.length <= 0 ? <h1 className="no-posts"> You have no favorite posts :( </h1>
                     :<PostList                        
                     fetchActive={fetchActive}                        
                     posts={favorites}

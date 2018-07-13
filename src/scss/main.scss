@@ -4,11 +4,11 @@
 @import 
     'components/comments',
     'components/trending',
-    'components/subDetails';
+    'components/subDetails',
+    'components/postList',
+    'components/subList';
 
 @import 
-    'layout/subList',
-    'layout/postList',
     'layout/header',
     'layout/pagination',
     'layout/mainContent';

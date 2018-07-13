@@ -1,11 +1,38 @@
 import React from 'react';
 import { urlTypes } from '../types';
-import { Button } from 'antd';
 import 'antd/dist/antd.css';
+import { Button, Menu, Dropdown, Icon } from 'antd';
+
+
 
 const FilterList = (props) => {
-    const { url, filterChange, fetchData, resetPage } = props;
-
+    const { url, filterChange, fetchData, resetPage, topChange } = props;
+    const menuTop = (
+        <Menu>
+            {url.top.map((item, index) => (
+                <Menu.Item onClick={()=> {topChange(item.code);                 
+                    filterChange('top');
+                    resetPage(); 
+                    fetchData();}} 
+                    key={index}
+                >
+                    {item.text}
+                </Menu.Item>
+            ))} 
+        </Menu>);
+        const menuControversial = (
+            <Menu>
+                {url.top.map((item, index) => (
+                    <Menu.Item onClick={()=> {topChange(item.code);                 
+                        filterChange('controversial');
+                        resetPage(); 
+                        fetchData();}} 
+                        key={index}
+                    >
+                        {item.text}
+                    </Menu.Item>
+                ))} 
+            </Menu>);
     return(
         <div>
             <ul className="list">
@@ -27,6 +54,16 @@ const FilterList = (props) => {
                         </Button>
                     </li>
                 ))}
+                <Dropdown overlay={menuControversial}>
+                    <Button>
+                    Controversial <Icon type="down" />
+                    </Button>
+                </Dropdown>
+                <Dropdown overlay={menuTop}>
+                    <Button>
+                    Top <Icon type="down" />
+                    </Button>
+                </Dropdown>
             </ul>
         </div>
 

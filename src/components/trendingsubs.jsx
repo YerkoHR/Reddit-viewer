@@ -2,20 +2,32 @@ import React from 'react';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
 
-const TrendingSubs = (props) => {
+const TrendingSubs = ({ subs, subChange, filterChange, fetchData, resetPage, fetchActive, addSub }) => {
     return (
          <div className="container-info fade-in">
             <div className="container__box white">
                 <p className="container__box--title">Trending Subreddits</p>
                 <ul>
-                    {props.subs.trending.map((trending, index) => (
+                    {subs.trending.map((trending, index) => (
                         <li key={index}>
                             <div className="trending">
                                 <div className="trending__sub">
-                                    <a className="trending--underlined">r/{trending.sub}</a>
+                                    <a 
+                                        onClick = {() =>  
+                                        {subChange(trending.sub); 
+                                        fetchActive(trending.sub);
+                                        filterChange('hot'); 
+                                        resetPage(); 
+                                        fetchData();}}
+                                        className="trending--underlined"
+                                        >
+                                    r/{trending.sub}
+                                    </a>
                                     <span className="trending__subscribers">{trending.subscribers.toLocaleString()} Subscribers</span>
                                 </div>
-                                <Button>+</Button>
+                                <Button
+                                    onClick={ ()=> addSub(trending.sub)}
+                                >+</Button>
                             </div>
                         </li>
                     ))}

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const ADD = 'subs/ADD';
+const ADD_SUB = 'subs/ADD_SUB';
 const TRENDING_DETAILS = 'subs/TRENDING_DETAILS';
 const UPDATE_ACTIVE = 'subs/UPDATE_ACTIVE';
-//const USER_SUBS = 'subs/USER_SUBS';
+
 
 const initialState = {
    user: ['all', 'animemes', 'leagueoflegends'],
@@ -17,13 +17,15 @@ export default function reducer (state = initialState, action){
             return {...state, trending: action.update }
         case UPDATE_ACTIVE:
             return {...state, active: action.update }
+        case ADD_SUB:
+            return { ...state, user: [...state.user, action.sub] }
         default:
             return state;
     }
 }
 
 export function addSub(sub){
-    return { type: ADD, sub };
+    return { type: ADD_SUB, sub };
 }
 export function UpdateSubs(update){
     return  { type: TRENDING_DETAILS, update };
