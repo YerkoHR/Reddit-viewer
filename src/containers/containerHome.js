@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchData, toggleComments } from '../redux/ducks/posts';
 import { saveUnsave } from '../redux/ducks/favorites';
-import { fetchDetails, fetchActive, addSub } from '../redux/ducks/subs';
+import { fetchDetails, fetchActive, addSub, removeSub, toRemove } from '../redux/ducks/subs';
 import { fetchComments, removeComments } from '../redux/ducks/comments';
 import { subChange, filterChange, fetchPagination, resetPage, topChange } from '../redux/ducks/URL';
 import Home from '../components/home';
@@ -30,5 +30,7 @@ export default connect(mapStateToProps, {
     filterChange,
     removeComments,
     resetPage,
-    addSub
+    addSub,
+    removeSub,
+    toRemove
     })(Home);

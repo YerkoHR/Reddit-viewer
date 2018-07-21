@@ -34,7 +34,9 @@ class Home extends Component {
             toggleComments,
             toggleState,
             addSub,
-            fetchActive } = this.props;
+            fetchActive,
+            toRemove,
+            removeSub } = this.props;
 
         return (
             <div>
@@ -64,6 +66,7 @@ class Home extends Component {
                     fetchData={fetchData}
                     fetchActive={fetchActive}
                     resetPage={resetPage}
+                    removeSub={removeSub}
                 />
                 <FilterList
                     url={url}
@@ -107,6 +110,7 @@ class Home extends Component {
                             fetchActive={fetchActive}
                             fetchData={fetchData}
                             addSub={addSub}
+                            toRemove={toRemove}
                         />
                         : <SubDetails 
                             subs={subs}
@@ -116,6 +120,7 @@ class Home extends Component {
                             fetchData={fetchData}
                             addSub={addSub}
                             resetPage={resetPage}
+                            toRemove={toRemove}
                         />
                     }
 

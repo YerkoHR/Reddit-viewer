@@ -1,6 +1,6 @@
 import React from 'react';
 import { subsTypes, urlTypes } from '../types';
-import { Button } from 'antd';
+import { Button, Icon } from 'antd';
 import 'antd/dist/antd.css';
 
 const SubList = (props) => {
@@ -11,10 +11,22 @@ const SubList = (props) => {
         fetchData, 
         resetPage, 
         subChange, 
-        fetchActive } = props;
+        fetchActive,
+        removeSub } = props;
     
     return (
             <ul className="list">
+                <li>
+                    <Button
+                        className={url.urlParts.currentSub === 'all' ? "active " : ""} 
+                        onClick = {() =>  {subChange('all'); 
+                        filterChange('hot'); 
+                        resetPage(); 
+                        fetchData();
+                        }}
+                        > All
+                    </Button>
+                </li>
                 {subs.user.map((sub, index) => (
                     <li key={index}>
                         <Button
@@ -25,8 +37,13 @@ const SubList = (props) => {
                         fetchData();
                         sub !== 'all' && fetchActive(sub);}}
                     >
-                        {sub}
+                        {sub} 
+                        
                     </Button>
+                    <Icon 
+                        type="close" 
+                        onClick={ () => removeSub(index)}
+                    />
                     </li>
                 ))}
             </ul>

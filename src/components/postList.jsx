@@ -118,7 +118,7 @@ const PostList = (props) => {
                                 <a 
                                     className="comment__link"
                                     href={"https://www.reddit.com/user/" + 
-                                    item.data.author}
+                                    comment.author}
                                     target="_blank"
                                 >
                                     {comment.author}

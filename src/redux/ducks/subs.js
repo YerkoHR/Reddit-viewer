@@ -3,10 +3,10 @@ import axios from 'axios';
 const ADD_SUB = 'subs/ADD_SUB';
 const TRENDING_DETAILS = 'subs/TRENDING_DETAILS';
 const UPDATE_ACTIVE = 'subs/UPDATE_ACTIVE';
-
+const REMOVE_SUB = 'subs/REMOVE_SUB';
 
 const initialState = {
-   user: ['all', 'animemes', 'leagueoflegends'],
+   user: ['Animemes', 'leagueoflegends'],
    active: {},
    trending: []
 }
@@ -19,6 +19,8 @@ export default function reducer (state = initialState, action){
             return {...state, active: action.update }
         case ADD_SUB:
             return { ...state, user: [...state.user, action.sub] }
+        case REMOVE_SUB:
+            return { ...state, user: [ ...state.user.slice(0, action.index), ...state.user.slice(action.index + 1)]}
         default:
             return state;
     }
@@ -26,6 +28,9 @@ export default function reducer (state = initialState, action){
 
 export function addSub(sub){
     return { type: ADD_SUB, sub };
+}
+export function removeSub(index){
+    return { type: REMOVE_SUB, index };
 }
 export function UpdateSubs(update){
     return  { type: TRENDING_DETAILS, update };
@@ -76,6 +81,16 @@ export function fetchActive(sub){
         }
 
 }
+
+export function toRemove(subName){
+    return (dispatch, getState) => {
+        const  state = getState();
+        const toRemove = state.subs.user.findIndex((sub) => 
+        sub === subName);
+        dispatch(removeSub(toRemove));
+    }
+}
+
 function formatPosts(fetched){
     fetched.active_user_count =  fetched.active_user_count>1000 ? (fetched.active_user_count / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : fetched.active_user_count;
     fetched.subscribers =  fetched.subscribers>1000 ? (fetched.subscribers / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : fetched.subscribers;

@@ -2,7 +2,15 @@ import React from 'react';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
 
-const TrendingSubs = ({ subs, subChange, filterChange, fetchData, resetPage, fetchActive, addSub }) => {
+const TrendingSubs = ({ 
+    subs, 
+    subChange, 
+    filterChange, 
+    fetchData, 
+    resetPage, 
+    fetchActive, 
+    addSub,
+    toRemove }) => {
     return (
          <div className="container-info fade-in">
             <div className="container__box white">
@@ -25,9 +33,14 @@ const TrendingSubs = ({ subs, subChange, filterChange, fetchData, resetPage, fet
                                     </a>
                                     <span className="trending__subscribers">{trending.subscribers.toLocaleString()} Subscribers</span>
                                 </div>
+                                {!subs.user.includes(trending.sub) ? 
                                 <Button
                                     onClick={ ()=> addSub(trending.sub)}
-                                >+</Button>
+                                >+</Button> :
+                                <Button
+                                    onClick={ ()=> toRemove(trending.sub)}                                    
+                                >-</Button>
+                            }
                             </div>
                         </li>
                     ))}

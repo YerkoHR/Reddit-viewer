@@ -16,7 +16,6 @@ export default function reducer(state = {}, action){
             return state;
     }
 }
-//return update(state, { [action.index]: {$set: []}})
 
 export function storeComments(comments, index){
     return { type: STORE_COMMENTS, comments, index };
@@ -26,7 +25,7 @@ export function removeComments(index){
 }
 export function fetchComments(sub, id, index){
     return (dispatch) => {
-        axios.get(`https://www.reddit.com/r/${sub}/comments/${id}.json?limit=3&sort=hot`)
+        axios.get(`https://www.reddit.com/r/${sub}/comments/${id}.json?limit=4&sort=top`)
         .then((response) => {
           
             const comments = response.data[1].data.children.map((comment) => {

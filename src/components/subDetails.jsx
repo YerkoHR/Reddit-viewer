@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
 
-const SubDetails = ({ subs }) => {
+const SubDetails = ({ subs, addSub, toRemove }) => {
     return (
         <div className="container-info fade-in">
             <div className="container__box white">
@@ -31,7 +31,13 @@ const SubDetails = ({ subs }) => {
                     </div>
                     <p className="container__details--desc">{subs.active.public_description}</p>
                     </div>
-                <Button>Add</Button>
+                {!subs.user.includes(subs.active.display_name) ? 
+                <Button
+                    onClick={ ()=> addSub(subs.active.display_name)}
+                >+</Button> :                                
+                <Button
+                    onClick={ ()=> toRemove(subs.active.display_name)} 
+                >-</Button>}
             </div>
         </div>
     );
