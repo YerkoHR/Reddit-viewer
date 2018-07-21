@@ -54,12 +54,22 @@ const FilterList = (props) => {
                         </Button>
                     </li>
                 ))}
-                <Dropdown overlay={menuControversial}>
+                <Dropdown 
+                    className={
+                        url.urlParts.currentFilter === 'controversial' ? 
+                        "active " : 
+                        ""
+                    } overlay={menuControversial}>
                     <Button>
                     Controversial <Icon type="down" />
                     </Button>
                 </Dropdown>
-                <Dropdown overlay={menuTop}>
+                <Dropdown 
+                    className={
+                        url.urlParts.currentFilter === 'top' ? 
+                            "active " : 
+                            ""
+                    } overlay={menuTop}>
                     <Button>
                     Top <Icon type="down" />
                     </Button>

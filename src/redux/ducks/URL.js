@@ -29,7 +29,7 @@ const initialState = {
         { text: 'Past week', code:'week'}, 
         { text: 'Past month', code:'month'}, 
         { text: 'Past year', code:'year'}, 
-        { text: 'Past year', code:'all'} 
+        { text: 'All time', code:'all'} 
     ],
     pagination: {
         page: 1,

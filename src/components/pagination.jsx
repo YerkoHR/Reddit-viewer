@@ -1,24 +1,28 @@
 import React from 'react';
 import { urlTypes } from '../types';
+import { Icon } from 'antd';
+import 'antd/dist/antd.css';
 
 const Pagination = (props) => {
     const {fetchPagination, url, fetchData } = props;
 
     return (
         <div className="container-pag">
-             <i 
-                className={url.pagination.page <= 1 ? "fas fa-caret-left fa-lg fa-disabled" : "fas fa-caret-left fa-lg"}
+            <Icon 
+                type="caret-left" 
+                className={url.pagination.page <= 1 ? "disabled" : ""}
 
                 onClick={() => {fetchPagination( 'prev'); fetchData();}} 
-            >
-            </i>
+            />
+            
             <span>
                 page <b>{url.pagination.page}</b> of <b>{url.pagination.totalPages}</b>
             </span>
-            <i className={url.pagination.page >= url.pagination.totalPages ? "fas fa-caret-right fa-lg fa-disabled" : "fas fa-caret-right fa-lg"}
+            <Icon 
+                type="caret-right"
+                className={url.pagination.page >= url.pagination.totalPages ? "disabled" : ""}
                 onClick={() => {fetchPagination('next'); fetchData();}}
-            > 
-            </i>
+            />
         </div>
     );
 

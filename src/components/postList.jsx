@@ -123,21 +123,14 @@ const PostList = (props) => {
                                 >
                                     {comment.author}
                                 </a>
-                                <span>{comment.score} points</span>
-                                
+                                <div>{comment.score} points</div>
+                                <div>{comment.created_utc}</div>
                             </div>
-                            <p>{comment.body}</p>
-                            <div className="comment__info">
-                                <a 
-                                    className="comment__link"
-                                    href={"https://reddit.com" + 
-                                    item.data.permalink}
-                                    target="_blank"
-                                >
-                                    Permalink
-                                </a>
-                                <span>{comment.created_utc}</span>
-                            </div>    
+                            <span>{comment.body}</span>
+
+
+                                
+                       
                         </li>
                     )}
                 </ul>
