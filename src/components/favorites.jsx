@@ -20,6 +20,7 @@ class favorites extends Component {
             toggleComments, 
             removeComments, 
             fetchComments,
+            removeSub,
             fetchActive } = this.props;
 
         return (
@@ -42,7 +43,6 @@ class favorites extends Component {
                         Favorites
                     </Link>
                 </div>
-                <Link to="/">
                     <SubList
                         filterChange={filterChange}
                         subChange={subChange}
@@ -51,8 +51,8 @@ class favorites extends Component {
                         resetPage={resetPage}
                         fetchData={fetchData}
                         fetchActive={fetchActive}
+                        removeSub={removeSub}
                     />
-                </Link>
                 {favorites.length <= 0 ? <h1 className="no-posts"> You have no favorite posts :( </h1>
                     :<PostList                        
                     fetchActive={fetchActive}                        

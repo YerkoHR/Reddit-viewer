@@ -8,9 +8,7 @@
     padding: 0;  
     border: $border;
     font-size: .9em;
-    @include respond-to('small') {
-        margin: 0 2px;
-    }
+
 }
 .post{
     border: .5px solid lightgrey;

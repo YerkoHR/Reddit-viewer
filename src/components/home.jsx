@@ -6,9 +6,21 @@ import PostList from './postList';
 import TrendingSubs from './trendingSubs';
 import SubDetails from './subDetails';
 import Pagination from './pagination';
+import FormikForm from './form';
 import { postsTypes, commentsTypes, urlTypes, subsTypes } from '../types';
 
 class Home extends Component {   
+
+    constructor(){
+        super();
+        this.state = {
+            sub: ''
+        }
+        this.addSubManual = this.addSubManual.bind(this);
+    }
+    addSubManual(sub){
+        this.setState({sub});
+    }
 
     componentDidMount(){
         this.props.fetchData();
@@ -58,6 +70,7 @@ class Home extends Component {
                         Favorites 
                     </Link>
                 </div>
+                <FormikForm addSub={addSub}/>
                 <SubList
                     subChange={subChange}
                     filterChange={filterChange}
@@ -68,6 +81,7 @@ class Home extends Component {
                     resetPage={resetPage}
                     removeSub={removeSub}
                 />
+                <br/>
                 <FilterList
                     url={url}
                     filterChange={filterChange}

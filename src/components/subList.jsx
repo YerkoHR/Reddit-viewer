@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { subsTypes, urlTypes } from '../types';
 import { Button, Icon } from 'antd';
 import 'antd/dist/antd.css';
@@ -17,33 +18,37 @@ const SubList = (props) => {
     return (
             <ul className="list">
                 <li>
-                    <Button
-                        className={url.urlParts.currentSub === 'all' ? "active " : ""} 
-                        onClick = {() =>  {subChange('all'); 
-                        filterChange('hot'); 
-                        resetPage(); 
-                        fetchData();
-                        }}
-                        > All
-                    </Button>
+                    <Link to="/">
+                        <Button
+                            className={url.urlParts.currentSub === 'all' ? "active " : ""} 
+                            onClick = {() =>  {subChange('all'); 
+                            filterChange('hot'); 
+                            resetPage(); 
+                            fetchData();
+                            }}
+                            > All
+                        </Button>
+                    </Link>
                 </li>
                 {subs.user.map((sub, index) => (
                     <li key={index}>
-                        <Button
-                        className={url.urlParts.currentSub === sub ? "active " : ""} 
-                        onClick = {() =>  {subChange(sub); 
-                        filterChange('hot'); 
-                        resetPage(); 
-                        fetchData();
-                        sub !== 'all' && fetchActive(sub);}}
-                    >
-                        {sub} 
-                        
-                    </Button>
-                    <Icon 
-                        type="close" 
-                        onClick={ () => removeSub(index)}
-                    />
+                        <Link to="/">
+                            <Button
+                                className={url.urlParts.currentSub === sub ? "active " : ""} 
+                                onClick = {() =>  {subChange(sub); 
+                                filterChange('hot'); 
+                                resetPage(); 
+                                fetchData();
+                                sub !== 'all' && fetchActive(sub);}}
+                            >
+                                {sub} 
+                                
+                            </Button>
+                        </Link>
+                        <Icon 
+                            type="close" 
+                            onClick={ () => removeSub(index)}
+                        />
                     </li>
                 ))}
             </ul>

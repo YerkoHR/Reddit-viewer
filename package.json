@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.6.5",
     "axios": "^0.18.0",
+    "formik": "^1.0.1",
     "immutability-helper": "^2.7.0",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
@@ -15,7 +16,8 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.26.0"
   },
   "scripts": {
     "start": "react-scripts start",

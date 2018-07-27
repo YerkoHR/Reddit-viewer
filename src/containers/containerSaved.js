@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchActive } from '../redux/ducks/subs';
+import { fetchActive, removeSub } from '../redux/ducks/subs';
 import { fetchData } from '../redux/ducks/posts';
 import { unSave, toggleComments } from '../redux/ducks/favorites';
 import { subChange, filterChange, resetPage } from '../redux/ducks/URL';
@@ -15,13 +15,14 @@ function mapStateToProps (state) {
     };
 }
 export default connect(mapStateToProps, {
-        fetchData,
-        unSave,
-        subChange,
-        filterChange,
-        toggleComments,
-        resetPage,
-        removeComments,
-        fetchComments,
-        fetchActive
+    fetchData,
+    unSave,
+    subChange,
+    filterChange,
+    toggleComments,
+    resetPage,
+    removeComments,
+    fetchComments,
+    fetchActive,
+    removeSub
     })(favorites);

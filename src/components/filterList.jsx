@@ -34,49 +34,46 @@ const FilterList = (props) => {
                 ))} 
             </Menu>);
     return(
-        <div>
-            <ul className="list">
-                {url.filters.map((filter, index) => (
-                    <li key={index}>
-                        <Button  
-                            className={
-                                url.urlParts.currentFilter === filter ? 
-                                "active " : 
-                                ""
-                            } 
-                            onClick = { () => {
-                            filterChange(filter); 
-                            resetPage(); 
-                            fetchData();}
-                            } 
-                        >
-                        {filter}
-                        </Button>
-                    </li>
-                ))}
-                <Dropdown 
-                    className={
-                        url.urlParts.currentFilter === 'controversial' ? 
-                        "active " : 
-                        ""
-                    } overlay={menuControversial}>
-                    <Button>
-                    Controversial <Icon type="down" />
-                    </Button>
-                </Dropdown>
-                <Dropdown 
-                    className={
-                        url.urlParts.currentFilter === 'top' ? 
+        <ul className="list">
+            {url.filters.map((filter, index) => (
+                <li key={index}>
+                    <Button  
+                        className={
+                            url.urlParts.currentFilter === filter ? 
                             "active " : 
                             ""
-                    } overlay={menuTop}>
-                    <Button>
-                    Top <Icon type="down" />
+                        } 
+                        onClick = { () => {
+                        filterChange(filter); 
+                        resetPage(); 
+                        fetchData();}
+                        } 
+                    >
+                    {filter}
                     </Button>
-                </Dropdown>
-            </ul>
-        </div>
-
+                </li>
+            ))}
+            <Dropdown 
+                className={
+                    url.urlParts.currentFilter === 'controversial' ? 
+                    "active " : 
+                    ""
+                } overlay={menuControversial}>
+                <Button>
+                Controversial <Icon type="down" />
+                </Button>
+            </Dropdown>
+            <Dropdown 
+                className={
+                    url.urlParts.currentFilter === 'top' ? 
+                        "active " : 
+                        ""
+                } overlay={menuTop}>
+                <Button>
+                Top <Icon type="down" />
+                </Button>
+            </Dropdown>
+        </ul>
     )
 }
 
