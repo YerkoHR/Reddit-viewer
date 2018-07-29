@@ -38,6 +38,7 @@ const TrendingSubs = ({
                                     onClick={ ()=> addSub(trending.sub)}
                                 >+</Button> :
                                 <Button
+                                    type="danger"
                                     onClick={ ()=> toRemove(trending.sub)}                                    
                                 >-</Button>
                             }

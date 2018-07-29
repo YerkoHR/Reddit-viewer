@@ -36,6 +36,7 @@ const SubDetails = ({ subs, addSub, toRemove }) => {
                     onClick={ ()=> addSub(subs.active.display_name)}
                 >+</Button> :                                
                 <Button
+                    type="danger"
                     onClick={ ()=> toRemove(subs.active.display_name)} 
                 >-</Button>}
             </div>

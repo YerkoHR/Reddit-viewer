@@ -9,13 +9,11 @@
         display: block;
         margin: 20px auto;
         font-size: 13px;
-        padding: 20px;
     }
     @include respond-to('medium'){
         display: block;
         margin: 20px auto;
         font-size: 13px;
-        padding: 20px;
     }
 }
 .container__box{

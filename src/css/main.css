@@ -1,3 +1,6 @@
+html {
+  overflow-y: scroll; }
+
 body {
   margin: 0;
   font-family: "Montserrat", Helvetica, sans-serif;
@@ -12,9 +15,6 @@ li {
 
 a {
   text-decoration: none; }
-
-html {
-  overflow-y: scroll; }
 
 h1 {
   text-align: center; }
@@ -53,6 +53,7 @@ i {
       text-decoration: underline; }
   .comment--show .comment span {
     font-style: italic;
+    color: black;
     word-wrap: break-word; }
 
 .comment--hide {
@@ -64,14 +65,12 @@ i {
     .container-info {
       display: block;
       margin: 20px auto;
-      font-size: 13px;
-      padding: 20px; } }
+      font-size: 13px; } }
   @media (min-width: 900px) {
     .container-info {
       display: block;
       margin: 20px auto;
-      font-size: 13px;
-      padding: 20px; } }
+      font-size: 13px; } }
 
 .container__box {
   border: 1px solid #cccccc;
@@ -144,9 +143,6 @@ i {
   padding: 0;
   border: 1px solid #cccccc;
   font-size: .9em; }
-  @media (max-width: 600px) {
-    .container-post {
-      margin: 0 2px; } }
 
 .post {
   border: .5px solid lightgrey;
@@ -269,6 +265,33 @@ i {
 .disabled {
   opacity: 0.6;
   pointer-events: none; }
+
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin: 5px 30px; }
+  .form__validation {
+    color: red;
+    margin: 0 30px; }
+  .form__input {
+    width: 200px; }
+    .form__input ::-webkit-input-placeholder {
+      background-color: white !important;
+      color: white !important; }
+    .form__input :-ms-input-placeholder {
+      background-color: white !important;
+      color: white !important; }
+    .form__input ::-ms-input-placeholder {
+      background-color: white !important;
+      color: white !important; }
+    .form__input ::placeholder {
+      background-color: white !important;
+      color: white !important; }
 
 .header {
   border-bottom: 1px solid #cccccc;

@@ -4,6 +4,9 @@
 $font-stack: 'Montserrat', Helvetica, sans-serif;
 $background: $grey;
 
+html {
+  overflow-y: scroll;
+} 
 body {
   margin: 0;
   font-family: $font-stack;
@@ -19,9 +22,7 @@ li{
 a{
   text-decoration: none;
 }
-html {
-    overflow-y: scroll;
-} 
+
 h1{
   text-align: center;
 }

@@ -1,0 +1,20 @@
+.form{
+    display: flex;
+    flex-direction: row;
+    margin: 5px 30px ;
+
+    &__validation{
+        color: red;
+        margin: 0 30px;
+
+    }
+    &__input{
+        width: 200px;
+        ::placeholder {
+        background-color: white !important;
+        color: white !important;
+    }
+    }
+    
+}
+

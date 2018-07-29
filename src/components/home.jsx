@@ -70,7 +70,7 @@ class Home extends Component {
                         Favorites 
                     </Link>
                 </div>
-                <FormikForm addSub={addSub}/>
+                
                 <SubList
                     subChange={subChange}
                     filterChange={filterChange}
@@ -81,6 +81,8 @@ class Home extends Component {
                     resetPage={resetPage}
                     removeSub={removeSub}
                 />
+                <br/>
+                <FormikForm addSub={addSub}/>
                 <br/>
                 <FilterList
                     url={url}

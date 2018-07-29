@@ -45,10 +45,12 @@ const SubList = (props) => {
                                 
                             </Button>
                         </Link>
-                        <Icon 
-                            type="close" 
+                        <Button
                             onClick={ () => removeSub(index)}
-                        />
+                            type="danger"
+                        >
+                            <Icon className="remove"type="close" />
+                        </Button>
                     </li>
                 ))}
             </ul>

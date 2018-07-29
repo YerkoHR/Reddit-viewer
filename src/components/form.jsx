@@ -1,19 +1,29 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Form } from 'formik';
+import { Button, Input } from 'antd';
 import * as Yup from 'yup';
 
 const myForm = ({
   values,
   touched,
-  errors
+  errors,
+  handleChange
 }) => (
   <Form>
-  <div>
-      <Field type="text" name="sub" value={values.sub} placeholder="new sub"/> 
-      {errors.sub && touched.sub && <div >{errors.sub}</div>}
-    </div>
-    <button type="submit">Add</button>
+  <div className="form">
+  <Input 
+    className="form__input"
+    type="text" 
+    name="sub" 
+    value={values.sub} 
+    onChange={handleChange} 
+    placeholder="Add sub.."
+  /> 
+  <Button htmlType="submit">+</Button></div>
+  {errors.sub && touched.sub && <div className="form__validation">{errors.sub}</div>}
   </Form>
+      
+
 )
 
 const FormikForm = withFormik({
