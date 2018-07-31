@@ -13,7 +13,7 @@ const PAGE_DIRECTION = 'URL/PAGE_DIRECTION';
 
 const initialState = {
     urlParts: {
-        common: 'http://www.reddit.com/r/',
+        common: 'https://www.reddit.com/r/',
         currentSub: 'all',
         slash: '/',
         currentFilter: 'hot',
