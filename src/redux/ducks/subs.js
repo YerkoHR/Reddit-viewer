@@ -6,7 +6,7 @@ const UPDATE_ACTIVE = 'subs/UPDATE_ACTIVE';
 const REMOVE_SUB = 'subs/REMOVE_SUB';
 
 const initialState = {
-   user: ['Animemes', 'leagueoflegends'],
+   user: [],
    active: {},
    trending: []
 }
