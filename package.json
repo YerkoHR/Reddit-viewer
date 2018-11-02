@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "formik": "^1.0.1",
     "immutability-helper": "^2.7.0",
+    "merge": "^1.2.1",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "react": "^16.4.0",
